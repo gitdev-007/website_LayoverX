@@ -53,7 +53,6 @@
             padding: 0 32px;
         }
 
-        /* Background Effects */
         .bg-gradient {
             position: fixed;
             top: 0;
@@ -80,7 +79,6 @@
             background-size: 50px 50px;
         }
 
-        /* Animations */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -102,17 +100,16 @@
             100% { background-position: 0% 50%; }
         }
 
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
         }
 
-        /* Navigation */
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         nav {
             position: fixed;
             top: 0;
@@ -188,74 +185,37 @@
             transform: rotate(180deg);
         }
 
-        /* Features Dropdown */
         .features-dropdown {
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%) translateY(20px);
-            width: 720px;
-            background: rgba(5, 11, 21, 0.95);
-            backdrop-filter: blur(30px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            padding: 32px;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            transform: translateX(-50%) translateY(10px);
+            min-width: 180px;
+            padding: 16px 0;
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
-            box-shadow: var(--shadow-lg);
         }
 
         .nav-item:hover .features-dropdown {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) translateY(12px);
+            transform: translateX(-50%) translateY(0);
         }
 
-        .feature-item {
-            display: flex;
-            gap: 16px;
-            padding: 16px;
-            border-radius: 12px;
+        .feature-link {
+            display: block;
+            padding: 12px 24px;
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .feature-item:hover {
-            background: var(--glass-bg);
-        }
-
-        .feature-item-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            font-size: 18px;
-        }
-
-        .feature-item-icon.hotels { background: linear-gradient(135deg, #ff6b35, #f7931e); }
-        .feature-item-icon.restaurants { background: linear-gradient(135deg, #4ecdc4, #44a08d); }
-        .feature-item-icon.spa { background: linear-gradient(135deg, #a855f7, #6366f1); }
-        .feature-item-icon.gaming { background: linear-gradient(135deg, #ec4899, #f43f5e); }
-        .feature-item-icon.tours { background: linear-gradient(135deg, #14b8a6, #0d9488); }
-        .feature-item-icon.experiences { background: linear-gradient(135deg, #f59e0b, #ef4444); }
-
-        .feature-item-content h4 {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .feature-item-content p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.5;
+        .feature-link:hover {
+            color: var(--accent);
+            padding-left: 30px;
         }
 
         .nav-actions {
@@ -264,7 +224,6 @@
             align-items: center;
         }
 
-        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
@@ -292,21 +251,6 @@
             box-shadow: 0 15px 35px rgba(255, 77, 109, 0.35);
         }
 
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent);
-            transition: 0.5s;
-        }
-
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-
         .btn-outline {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--glass-border);
@@ -323,7 +267,6 @@
             font-size: 16px;
         }
 
-        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -442,7 +385,6 @@
             opacity: 0;
         }
 
-        /* Stats */
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -474,85 +416,6 @@
             letter-spacing: 1px;
         }
 
-        /* Video Card */
-        .hero-video {
-            position: absolute;
-            right: 8%;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 280px;
-            animation: fadeInUp 1s ease 1s forwards, float 4s ease-in-out infinite 2s;
-            opacity: 0;
-        }
-
-        .video-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .video-thumbnail {
-            position: relative;
-            aspect-ratio: 16/10;
-            overflow: hidden;
-        }
-
-        .video-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .video-card:hover .video-thumbnail img {
-            transform: scale(1.08);
-        }
-
-        .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 77, 109, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .play-button:hover {
-            background: var(--accent);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        .play-button i {
-            color: white;
-            font-size: 20px;
-            margin-left: 4px;
-        }
-
-        .video-info {
-            padding: 20px;
-        }
-
-        .video-info h4 {
-            font-size: 15px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .video-info p {
-            font-size: 13px;
-            color: var(--text-muted);
-        }
-
-        /* Scroll Indicator */
         .scroll-indicator {
             position: absolute;
             bottom: 40px;
@@ -571,7 +434,6 @@
             font-size: 20px;
         }
 
-        /* Sections */
         .section {
             padding: 140px 0;
             position: relative;
@@ -598,7 +460,152 @@
             font-weight: 300;
         }
 
-        /* Value Props */
+        .video-section {
+            background: var(--primary-dark);
+        }
+
+        .video-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .video-thumbnail {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .video-container:hover .video-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .play-btn-large {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 77, 109, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 40px rgba(255, 77, 109, 0.4);
+        }
+
+        .play-btn-large:hover {
+            background: var(--accent);
+            transform: scale(1.1);
+        }
+
+        .play-btn-large i {
+            color: white;
+            font-size: 28px;
+            margin-left: 4px;
+        }
+
+        .video-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 32px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+        }
+
+        .video-caption h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .video-caption p {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Video Modal */
+        .video-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .video-modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            position: relative;
+            max-width: 900px;
+            width: 90%;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: var(--radius);
+            overflow: hidden;
+            transform: scale(0.9);
+            transition: transform 0.4s ease;
+        }
+
+        .video-modal.active .modal-content {
+            transform: scale(1);
+            animation: zoomIn 0.4s ease forwards;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .modal-close:hover {
+            transform: scale(1.2);
+        }
+
+        .video-embed {
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-embed iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         .value-props {
             background: linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);
         }
@@ -649,7 +656,6 @@
             line-height: 1.7;
         }
 
-        /* How It Works */
         .how-it-works {
             background: var(--primary-dark);
         }
@@ -668,10 +674,7 @@
             left: 12%;
             right: 12%;
             height: 2px;
-            background: linear-gradient(90deg, 
-                var(--accent) 0%, 
-                rgba(255, 77, 109, 0.3) 50%, 
-                transparent 100%);
+            background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 77, 109, 0.3) 50%, transparent 100%);
         }
 
         .step-item {
@@ -716,7 +719,6 @@
             font-size: 14px;
         }
 
-        /* Testimonials */
         .testimonials {
             background: linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 100%);
         }
@@ -777,7 +779,6 @@
             line-height: 1.75;
         }
 
-        /* CTA Banner */
         .cta-section {
             padding: 160px 0;
             background: var(--primary-dark);
@@ -835,7 +836,6 @@
             flex-wrap: wrap;
         }
 
-        /* Footer */
         footer {
             background: var(--primary-dark);
             padding: 80px 0 40px;
@@ -967,13 +967,8 @@
             color: var(--accent);
         }
 
-        /* Responsive */
         @media (max-width: 1024px) {
             .nav-menu {
-                display: none;
-            }
-
-            .hero-video {
                 display: none;
             }
 
@@ -1050,60 +1045,11 @@
                             Features <i class="fas fa-chevron-down"></i>
                         </a>
                         <div class="features-dropdown">
-                            <div class="feature-item">
-                                <div class="feature-item-icon hotels">
-                                    <i class="fas fa-bed" style="color: white;"></i>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h4>Premium Hotels</h4>
-                                    <p>Luxury stays near airports with day rooms available</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-item-icon restaurants">
-                                    <i class="fas fa-utensils" style="color: white;"></i>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h4>Fine Dining</h4>
-                                    <p>Curated culinary experiences at top restaurants</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-item-icon spa">
-                                    <i class="fas fa-spa" style="color: white;"></i>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h4>Spa & Wellness</h4>
-                                    <p>Relaxation and rejuvenation during your layover</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-item-icon gaming">
-                                    <i class="fas fa-gamepad" style="color: white;"></i>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h4>Gaming Zones</h4>
-                                    <p>Entertainment hubs and gaming lounges</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-item-icon tours">
-                                    <i class="fas fa-map" style="color: white;"></i>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h4>City Tours</h4>
-                                    <p>Guided micro-tours of iconic city landmarks</p>
-                                </div>
-                            </div>
-                            <div class="feature-item">
-                                <div class="feature-item-icon experiences">
-                                    <i class="fas fa-compass" style="color: white;"></i>
-                                </div>
-                                <div class="feature-item-content">
-                                    <h4>Unique Experiences</h4>
-                                    <p>One-of-a-kind adventures tailored to your time</p>
-                                </div>
-                            </div>
+                            <a href="#" class="feature-link">Hotels</a>
+                            <a href="#" class="feature-link">Restaurants</a>
+                            <a href="#" class="feature-link">Spa</a>
+                            <a href="#" class="feature-link">Gaming & Entertainment Zone</a>
+                            <a href="#" class="feature-link">City Tours</a>
                         </div>
                     </li>
                     <li class="nav-item">
@@ -1159,26 +1105,45 @@
             </div>
         </div>
 
-        <div class="hero-video">
-            <div class="video-card">
-                <div class="video-thumbnail">
-                    <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=600&q=80" alt="Travel video">
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="video-info">
-                    <h4>Watch Overview</h4>
-                    <p>See how LayoverX works</p>
-                </div>
-            </div>
-        </div>
-
         <div class="scroll-indicator">
             <span>Scroll to explore</span>
             <i class="fas fa-chevron-down"></i>
         </div>
     </section>
+
+    <section class="section video-section" id="video-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>See How LayoverX Works</h2>
+                <p>Watch how easy it is to transform your layover</p>
+            </div>
+            <div class="video-container" onclick="openVideo()">
+                <div class="video-thumbnail">
+                    <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=1200&q=80" alt="LayoverX Overview">
+                </div>
+                <div class="video-overlay">
+                    <div class="play-btn-large">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="video-caption">
+                    <h3>LayoverX Overview</h3>
+                    <p>Discover a better way to travel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="video-modal" id="videoModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeVideo()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 
     <section class="section value-props" id="value-props">
         <div class="container">
@@ -1397,6 +1362,29 @@
                     });
                 }
             });
+        });
+
+        function openVideo() {
+            document.getElementById('videoModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideo() {
+            document.getElementById('videoModal').classList.remove('active');
+            document.body.style.overflow = '';
+            document.querySelector('.video-embed iframe').src = document.querySelector('.video-embed iframe').src;
+        }
+
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideo();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideo();
+            }
         });
     </script>
 </body>
