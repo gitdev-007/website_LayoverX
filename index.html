@@ -18,13 +18,15 @@
             --text-dark: #0B1D3A;
             --text-gray: #6B7280;
             --text-light: #9CA3AF;
-            --bg-light: #F8FAFC;
+            --bg-sky: #EAF3FF;
+            --bg-soft: #F7F9FC;
             --bg-white: #FFFFFF;
+            --bg-section: #F1F5F9;
             --glass-bg: rgba(255, 255, 255, 0.7);
-            --glass-border: rgba(0, 0, 0, 0.08);
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
-            --radius: 20px;
+            --glass-border: rgba(0, 0, 0, 0.06);
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
+            --radius: 16px;
             --radius-sm: 12px;
         }
 
@@ -40,7 +42,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--bg-light);
+            background: linear-gradient(180deg, #EAF3FF 0%, #F7F9FC 100%);
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
@@ -59,7 +61,9 @@
             right: 0;
             bottom: 0;
             z-index: -1;
-            background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 50%, #EEF2FF 100%);
+            background: 
+                url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80') center/cover no-repeat;
+            opacity: 0.05;
         }
 
         @keyframes float {
@@ -94,10 +98,11 @@
         }
 
         nav.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             padding: 14px 0;
-            box-shadow: var(--shadow);
+            border-bottom: 1px solid var(--glass-border);
         }
 
         .nav-content {
@@ -271,9 +276,9 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(180deg, 
-                rgba(255, 255, 255, 0.15) 0%,
-                rgba(248, 250, 252, 0.6) 50%,
-                rgba(255, 255, 255, 0.9) 100%);
+                rgba(234, 243, 255, 0.25) 0%,
+                rgba(247, 249, 252, 0.5) 50%,
+                rgba(234, 243, 255, 0.3) 100%);
         }
 
         .hero-bg img {
@@ -405,7 +410,7 @@
         }
 
         .video-section {
-            background: var(--bg-white);
+            background: var(--bg-soft);
         }
 
         .video-container {
@@ -524,7 +529,7 @@
         }
 
         .features {
-            background: var(--bg-light);
+            background: var(--bg-white);
         }
 
         .features-grid {
@@ -582,7 +587,7 @@
         }
 
         .how-it-works {
-            background: var(--bg-white);
+            background: var(--bg-section);
         }
 
         .steps-container {
@@ -645,11 +650,18 @@
             font-size: 14px;
         }
 
-        .cta-section {
+.cta-section {
             padding: 140px 0;
             background: var(--bg-white);
             position: relative;
             overflow: hidden;
+        }
+
+        .cta-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(234, 243, 255, 0.3) 100%);
         }
 
         .cta-bg {
@@ -704,7 +716,7 @@
         }
 
         footer {
-            background: var(--bg-white);
+            background: var(--bg-soft);
             padding: 60px 0 30px;
             border-top: 1px solid var(--glass-border);
         }
