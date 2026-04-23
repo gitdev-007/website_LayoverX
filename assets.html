@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LayoverX - Asset Links</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: #1a1a2e;
+            color: #f8f8f8;
+            padding: 40px 24px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+        
+        h1 span {
+            color: #e94560;
+        }
+        
+        .intro {
+            text-align: center;
+            color: #a0a0a0;
+            margin-bottom: 48px;
+            font-size: 18px;
+        }
+        
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e94560;
+        }
+        
+        .asset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .asset-card {
+            background: #16213e;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        
+        .asset-preview {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .asset-info {
+            padding: 20px;
+        }
+        
+        .asset-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .asset-link {
+            display: block;
+            padding: 8px 12px;
+            background: #1a1a2e;
+            border-radius: 8px;
+            font-size: 13px;
+            color: #a0a0a0;
+            word-break: break-all;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .asset-link:hover {
+            color: #e94560;
+            background: #0f3460;
+        }
+        
+        .asset-link a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        .font-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        
+        .font-item {
+            background: #16213e;
+            padding: 20px;
+            border-radius: 12px;
+        }
+        
+        .font-name {
+            font-size: 20px;
+            margin-bottom: 8px;
+        }
+        
+        .font-link {
+            color: #a0a0a0;
+            font-size: 14px;
+            word-break: break-all;
+        }
+        
+        .font-link a {
+            color: #e94560;
+            text-decoration: none;
+        }
+        
+        .font-demo {
+            margin-top: 16px;
+            font-size: 32px;
+        }
+        
+        .icon-section {
+            margin-bottom: 48px;
+        }
+        
+        .icon-item {
+            background: #16213e;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .icon-name {
+            margin-bottom: 8px;
+        }
+        
+        .icon-link {
+            color: #a0a0a0;
+            font-size: 14px;
+            word-break: break-all;
+        }
+        
+        .icon-link a {
+            color: #e94560;
+            text-decoration: none;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Layover<span>X</span> Assets</h1>
+        <p class="intro">Complete list of all external assets used in the LayoverX project</p>
+        
+        <!-- FONTS -->
+        <div class="section">
+            <h2 class="section-title">Fonts (Google Fonts)</h2>
+            <div class="font-list">
+                <div class="font-item">
+                    <div class="font-name">DM Sans</div>
+                    <div class="font-link"><a href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" target="_blank">https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700</a></div>
+                    <div class="font-demo" style="font-family: 'DM Sans', sans-serif;">The quick brown fox jumps over the lazy dog</div>
+                </div>
+                <div class="font-item">
+                    <div class="font-name">Playfair Display</div>
+                    <div class="font-link"><a href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" target="_blank">https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700</a></div>
+                    <div class="font-demo" style="font-family: 'Playfair Display', serif;">Elegant Typography</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ICONS -->
+        <div class="section icon-section">
+            <h2 class="section-title">Icons (Font Awesome CDN)</h2>
+            <div class="icon-item">
+                <div class="icon-name">Font Awesome 6.4.0 CDN</div>
+                <div class="icon-link"><a href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" target="_blank">https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css</a></div>
+            </div>
+        </div>
+        
+        <!-- HERO BACKGROUND -->
+        <div class="section">
+            <h2 class="section-title">Hero Section</h2>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" alt="Airport Travel Background" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Airport / Travel Background</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" target="_blank">https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FEATURES SECTION -->
+        <div class="section">
+            <h2 class="section-title">Features Section</h2>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=600&q=80" alt="Quick Experiences" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Quick Experiences</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=600&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1553413077-1901c93ba850?w=600&q=80" alt="Local Guides" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Local Guides</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1553413077-1901c93ba850?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1553413077-1901c93ba850?w=600&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Seamless Travel" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Seamless Travel</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- DESTINATIONS SECTION -->
+        <div class="section">
+            <h2 class="section-title">Destinations Section</h2>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" alt="Dubai" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Dubai</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389ffd?w=600&q=80" alt="Singapore" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Singapore</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1525625293386-3f8f99389ffd?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1525625293386-3f8f99389ffd?w=600&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&q=80" alt="Istanbul" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Istanbul</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt="Paris" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Paris</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" alt="Tokyo" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Tokyo</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80" alt="New York" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">New York</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80" target="_blank">https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- TESTIMONIALS SECTION -->
+        <div class="section">
+            <h2 class="section-title">Testimonials Section</h2>
+            <div class="asset-grid">
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="Sarah Johnson" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Sarah Johnson (Profile)</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" target="_blank">https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" alt="Michael Chen" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Michael Chen (Profile)</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80" target="_blank">https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&q=80</a></div>
+                    </div>
+                </div>
+                <div class="asset-card">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Emma Williams" class="asset-preview">
+                    <div class="asset-info">
+                        <div class="asset-name">Emma Williams (Profile)</div>
+                        <div class="asset-link"><a href="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" target="_blank">https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SUMMARY -->
+        <div class="section">
+            <h2 class="section-title">Asset Summary</h2>
+            <div class="font-list">
+                <div class="font-item">
+                    <div class="font-name">Total External Assets: 14</div>
+                    <div class="font-link">Fonts: 2 | Icons: 1 CDN | Images: 11</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
