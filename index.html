@@ -6,21 +6,27 @@
     <title>LayoverX - Turn Your Layovers into Experiences</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #1a1a2e;
-            --secondary: #16213e;
-            --accent: #e94560;
-            --accent-hover: #d63a52;
-            --text-light: #f8f8f8;
-            --text-muted: #a0a0a0;
-            --glass-bg: rgba(255, 255, 255, 0.1);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --card-bg: #ffffff;
-            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --radius: 16px;
+            --primary: #0B1D3A;
+            --primary-dark: #060d1f;
+            --secondary: #1a2d4a;
+            --accent: #ff4d6d;
+            --accent-light: #ff6b81;
+            --accent-dark: #ff3355;
+            --text-light: #ffffff;
+            --text-muted: rgba(255, 255, 255, 0.7);
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-border-hover: rgba(255, 255, 255, 0.25);
+            --card-bg: rgba(11, 29, 58, 0.6);
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 35px 60px -15px rgba(0, 0, 0, 0.5);
+            --radius: 20px;
+            --radius-sm: 12px;
         }
 
         * {
@@ -29,8 +35,12 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Inter', sans-serif;
             background: var(--primary);
             color: var(--text-light);
             line-height: 1.6;
@@ -38,9 +48,64 @@
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 0 32px;
+        }
+
+        /* Background Effects */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse 80% 50% at 20% 20%, rgba(120, 80, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(255, 77, 109, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 100% 100% at 50% 0%, #0B1D3A 0%, #060d1f 100%);
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.5;
+        }
+
+        /* Animation Keyframes */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 77, 109, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(255, 77, 109, 0.5); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Navigation */
@@ -51,13 +116,15 @@
             right: 0;
             z-index: 1000;
             padding: 20px 0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         nav.scrolled {
-            background: rgba(26, 26, 46, 0.95);
+            background: rgba(6, 13, 31, 0.9);
             backdrop-filter: blur(20px);
-            padding: 12px 0;
+            -webkit-backdrop-filter: blur(20px);
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .nav-content {
@@ -66,88 +133,112 @@
             align-items: center;
         }
 
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-light);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .logo-text span {
-            color: var(--accent);
-        }
-
-        .logo-img {
-            width: 120px;
-            height: auto;
-        }
-
         .logo-link {
             display: flex;
             align-items: center;
             text-decoration: none;
         }
 
+        .logo-img {
+            width: 140px;
+            height: auto;
+        }
+
         .nav-links {
             display: flex;
-            gap: 32px;
+            gap: 40px;
             list-style: none;
         }
 
         .nav-links a {
-            color: var(--text-light);
+            color: var(--text-muted);
             text-decoration: none;
             font-weight: 500;
-            font-size: 15px;
-            transition: color 0.3s ease;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: var(--accent);
+            color: var(--text-light);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
         }
 
         .nav-actions {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             align-items: center;
         }
 
+        /* Buttons */
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 12px 28px;
+            padding: 14px 32px;
             border-radius: 50px;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 14px;
             text-decoration: none;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             cursor: pointer;
             border: none;
+            position: relative;
+            overflow: hidden;
         }
 
         .btn-primary {
-            background: var(--accent);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, var(--accent) 100%);
+            background-size: 200% 200%;
             color: white;
+            animation: gradientMove 3s ease infinite;
         }
 
         .btn-primary:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.3);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
         }
 
         .btn-outline {
-            background: transparent;
-            border: 2px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
             color: var(--text-light);
+            backdrop-filter: blur(10px);
         }
 
         .btn-outline:hover {
-            border-color: var(--accent);
-            color: var(--accent);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--glass-border-hover);
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
@@ -156,34 +247,92 @@
             display: flex;
             align-items: center;
             position: relative;
-            background: linear-gradient(135deg, rgba(26, 26, 46, 0.7), rgba(22, 33, 62, 0.85)),
-                        url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80') center/cover no-repeat;
+            padding-top: 100px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        .hero-bg::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, 
+                rgba(6, 13, 31, 0.3) 0%,
+                rgba(11, 29, 58, 0.7) 50%,
+                rgba(6, 13, 31, 0.9) 100%);
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 77, 109, 0.15) 0%, transparent 70%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 4s ease-in-out infinite;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: rgba(255, 77, 109, 0.1);
+            border: 1px solid rgba(255, 77, 109, 0.3);
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(40px, 7vw, 72px);
+            font-size: clamp(48px, 8vw, 80px);
             font-weight: 700;
             line-height: 1.1;
             margin-bottom: 24px;
-            letter-spacing: -1px;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #ffffff 0%, rgba(255,255,255,0.8) 50%, #ffffff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
+            opacity: 0;
         }
 
         .hero p {
             font-size: 18px;
             color: var(--text-muted);
             margin-bottom: 40px;
-            max-width: 500px;
+            max-width: 540px;
             margin-left: auto;
             margin-right: auto;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
+            opacity: 0;
         }
 
         .hero-buttons {
@@ -191,82 +340,143 @@
             gap: 16px;
             justify-content: center;
             flex-wrap: wrap;
+            margin-bottom: 60px;
+            animation: fadeInUp 0.8s ease 0.6s forwards;
+            opacity: 0;
         }
 
         /* Search Bar */
-        .search-bar {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 24px;
-            margin-top: 48px;
+        .search-container {
+            animation: fadeInUp 0.8s ease 0.8s forwards;
+            opacity: 0;
         }
 
-        .search-fields {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr) auto;
-            gap: 16px;
-            align-items: end;
+        .search-bar {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: var(--shadow-lg), inset 0 1px 0 rgba(255,255,255,0.05);
         }
 
         .search-field {
             display: flex;
             flex-direction: column;
-            gap: 8px;
+            gap: 6px;
+            flex: 1;
+            padding: 12px 20px;
+            border-right: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .search-field:last-of-type {
+            border-right: none;
+        }
+
+        .search-field:focus-within {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
         }
 
         .search-field label {
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--text-muted);
+            color: var(--text-dim);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search-field label i {
+            color: var(--accent);
+            font-size: 14px;
         }
 
         .search-field input,
         .search-field select {
-            padding: 16px 20px;
-            border-radius: 12px;
-            border: 1px solid var(--glass-border);
-            background: rgba(255, 255, 255, 0.05);
+            padding: 0;
+            border: none;
+            background: transparent;
             color: var(--text-light);
-            font-size: 16px;
-            font-family: inherit;
+            font-size: 15px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
             transition: all 0.3s ease;
+            width: 100%;
         }
 
         .search-field input:focus,
         .search-field select:focus {
             outline: none;
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.1);
         }
 
         .search-field input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .search-field select {
             color: var(--text-muted);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='rgba(255,255,255,0.5)' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0 center;
+        }
+
+        .search-field select option {
+            background: var(--primary);
+            color: var(--text-light);
         }
 
         .search-btn {
-            padding: 16px 32px;
+            padding: 18px 32px;
+            border-radius: 18px;
+            font-size: 15px;
         }
 
-        /* Features Section */
-        .features {
-            padding: 120px 0;
-            background: var(--secondary);
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dim);
+            font-size: 12px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 20px;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 140px 0;
+            position: relative;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 80px;
         }
 
         .section-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(32px, 5vw, 48px);
+            font-size: clamp(36px, 5vw, 56px);
             font-weight: 700;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
         }
 
         .section-header p {
@@ -274,6 +484,12 @@
             font-size: 18px;
             max-width: 500px;
             margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
         }
 
         .features-grid {
@@ -284,47 +500,54 @@
 
         .feature-card {
             background: var(--card-bg);
+            border: 1px solid var(--glass-border);
             border-radius: var(--radius);
             overflow: hidden;
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,77,109,0.05) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow);
+            border-color: var(--glass-border-hover);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
         }
 
         .feature-image {
             width: 100%;
-            height: 240px;
+            height: 220px;
             object-fit: cover;
         }
 
         .feature-content {
-            padding: 28px;
-        }
-
-        .feature-content h3 {
-            font-size: 22px;
-            font-weight: 600;
-            color: var(--primary);
-            margin-bottom: 12px;
-        }
-
-        .feature-content p {
-            color: #666;
-            font-size: 15px;
+            padding: 32px;
+            position: relative;
         }
 
         .feature-icon {
             width: 56px;
             height: 56px;
-            background: var(--accent);
-            border-radius: 12px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .feature-icon i {
@@ -332,10 +555,36 @@
             color: white;
         }
 
+        .feature-content h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-content p {
+            color: var(--text-muted);
+            font-size: 15px;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+
         /* Destinations Section */
         .destinations {
-            padding: 120px 0;
-            background: var(--primary);
+            background: var(--primary-dark);
+            position: relative;
+        }
+
+        .destinations::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
         }
 
         .destinations-grid {
@@ -348,15 +597,28 @@
             position: relative;
             border-radius: var(--radius);
             overflow: hidden;
-            aspect-ratio: 4/5;
+            aspect-ratio: 3/4;
             cursor: pointer;
+        }
+
+        .destination-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius);
+            border: 2px solid transparent;
+            transition: border-color 0.3s ease;
+        }
+
+        .destination-card:hover::after {
+            border-color: var(--accent);
         }
 
         .destination-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .destination-card:hover img {
@@ -366,14 +628,18 @@
         .destination-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 60%);
+            background: linear-gradient(to top, 
+                rgba(6, 13, 31, 0.95) 0%,
+                rgba(6, 13, 31, 0.4) 40%,
+                transparent 100%);
             display: flex;
-            align-items: flex-end;
-            padding: 24px;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
         }
 
         .destination-info h3 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 600;
             margin-bottom: 4px;
         }
@@ -383,10 +649,22 @@
             color: var(--text-muted);
         }
 
+        .destination-price {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+        }
+
         /* How It Works */
         .how-it-works {
-            padding: 120px 0;
-            background: var(--secondary);
+            background: linear-gradient(180deg, var(--secondary) 0%, var(--primary) 100%);
         }
 
         .steps {
@@ -399,11 +677,14 @@
         .steps::before {
             content: '';
             position: absolute;
-            top: 40px;
-            left: 15%;
-            right: 15%;
+            top: 48px;
+            left: 20%;
+            right: 20%;
             height: 2px;
-            background: linear-gradient(90deg, var(--accent), transparent);
+            background: linear-gradient(90deg, 
+                var(--accent) 0%, 
+                rgba(255, 77, 109, 0.3) 50%, 
+                transparent 100%);
         }
 
         .step {
@@ -412,23 +693,24 @@
         }
 
         .step-number {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 50%;
+            width: 96px;
+            height: 96px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 32px;
+            margin: 0 auto 28px;
+            font-size: 40px;
             font-weight: 700;
             color: white;
             position: relative;
             z-index: 2;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.3);
         }
 
         .step h3 {
-            font-size: 22px;
+            font-size: 24px;
             font-weight: 600;
             margin-bottom: 12px;
         }
@@ -440,8 +722,7 @@
 
         /* Testimonials */
         .testimonials {
-            padding: 120px 0;
-            background: var(--primary);
+            background: var(--primary-dark);
         }
 
         .testimonials-grid {
@@ -451,23 +732,31 @@
         }
 
         .testimonial-card {
-            background: var(--secondary);
+            background: var(--card-bg);
+            border: 1px solid var(--glass-border);
             border-radius: var(--radius);
-            padding: 32px;
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-4px);
         }
 
         .testimonial-header {
             display: flex;
             align-items: center;
             gap: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
         }
 
         .testimonial-avatar {
-            width: 56px;
-            height: 56px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
+            border: 2px solid var(--accent);
         }
 
         .testimonial-info h4 {
@@ -483,32 +772,35 @@
         .testimonial-text {
             color: var(--text-muted);
             font-size: 15px;
-            line-height: 1.7;
+            line-height: 1.8;
         }
 
         .testimonial-rating {
             color: #ffc107;
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            font-size: 14px;
         }
 
         /* Footer */
         footer {
-            background: var(--secondary);
-            padding: 80px 0 32px;
+            background: var(--primary-dark);
+            padding: 100px 0 40px;
+            border-top: 1px solid var(--glass-border);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 2fr repeat(3, 1fr);
-            gap: 48px;
-            margin-bottom: 48px;
+            gap: 64px;
+            margin-bottom: 64px;
         }
 
         .footer-brand p {
             color: var(--text-muted);
             font-size: 15px;
-            margin: 16px 0 24px;
-            max-width: 280px;
+            margin: 20px 0 28px;
+            max-width: 300px;
+            line-height: 1.7;
         }
 
         .footer-social {
@@ -517,26 +809,31 @@
         }
 
         .footer-social a {
-            width: 44px;
-            height: 44px;
-            background: var(--glass-bg);
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--text-light);
+            color: var(--text-muted);
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .footer-social a:hover {
             background: var(--accent);
+            border-color: var(--accent);
+            color: white;
             transform: translateY(-4px);
         }
 
         .footer-links h4 {
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            color: var(--text-light);
         }
 
         .footer-links ul {
@@ -544,7 +841,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .footer-links a {
@@ -567,35 +864,65 @@
         }
 
         .footer-bottom p {
-            color: var(--text-muted);
+            color: var(--text-dim);
             font-size: 14px;
+        }
+
+        .footer-bottom p:last-child {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-bottom i {
+            color: var(--accent);
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .features-grid,
-            .destinations-grid,
-            .testimonials-grid,
-            .steps {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .search-fields {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
 
+            .features-grid,
+            .destinations-grid,
+            .testimonials-grid,
+            .steps,
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-grid {
+                gap: 48px;
+            }
+
+            .search-bar {
+                flex-direction: column;
+            }
+
+            .search-field {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--glass-border);
+            }
+
+            .search-field:last-of-type {
+                border-bottom: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
             .hero h1 {
                 font-size: 40px;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 16px;
             }
 
             .features-grid,
@@ -606,14 +933,18 @@
                 grid-template-columns: 1fr;
             }
 
-            .search-fields {
-                grid-template-columns: 1fr;
+            .section {
+                padding: 100px 0;
             }
 
             .footer-bottom {
                 flex-direction: column;
                 gap: 16px;
                 text-align: center;
+            }
+
+            .mobile-menu-btn {
+                display: block;
             }
         }
 
@@ -635,12 +966,15 @@
     </style>
 </head>
 <body>
+    <div class="bg-gradient"></div>
+    <div class="bg-grid"></div>
+
     <nav id="navbar">
         <div class="container">
             <div class="nav-content">
                 <a href="#" class="logo-link">
-                        <img src="images/logo.png" alt="LayoverX Logo" class="logo-img">
-                    </a>
+                    <img src="images/logo.png" alt="LayoverX Logo" class="logo-img">
+                </a>
                 <ul class="nav-links">
                     <li><a href="#destinations">Destinations</a></li>
                     <li><a href="#features">Features</a></li>
@@ -657,45 +991,59 @@
     </nav>
 
     <section class="hero">
+        <div class="hero-bg">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" alt="Airplane wing">
+        </div>
+        <div class="hero-glow"></div>
         <div class="container">
             <div class="hero-content">
-                <h1>Turn Your Layovers into Experiences</h1>
-                <p>Explore cities during your layover with curated micro-trips. Make the most of your travel time.</p>
+                <div class="hero-badge">
+                    <i class="fas fa-plane-departure"></i>
+                    Transform Your Journey
+                </div>
+                <h1>Turn Your Layovers Into Experiences</h1>
+                <p>Explore cities during your layover with curated micro-trips. Make every moment count between flights.</p>
                 <div class="hero-buttons">
                     <a href="#search" class="btn btn-primary">Explore Now</a>
                     <a href="#how-it-works" class="btn btn-outline">Learn More</a>
                 </div>
-                <div class="search-bar" id="search">
-                    <div class="search-fields">
+                <div class="search-container">
+                    <div class="search-bar" id="search">
                         <div class="search-field">
-                            <label>Departure City</label>
+                            <label><i class="fas fa-plane-departure"></i> From</label>
                             <input type="text" placeholder="Los Angeles">
                         </div>
                         <div class="search-field">
-                            <label>Layover City</label>
+                            <label><i class="fas fa-plane-arrival"></i> To</label>
                             <input type="text" placeholder="Dubai">
                         </div>
                         <div class="search-field">
-                            <label>Duration</label>
+                            <label><i class="fas fa-clock"></i> Duration</label>
                             <select>
-                                <option>Any duration</option>
+                                <option value="">Select hours</option>
                                 <option>2-4 hours</option>
                                 <option>4-8 hours</option>
                                 <option>8+ hours</option>
                             </select>
                         </div>
-                        <a href="#" class="btn btn-primary search-btn">Search</a>
+                        <a href="#" class="btn btn-primary search-btn">
+                            <i class="fas fa-search"></i> Search
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <span>Scroll to explore</span>
+            <i class="fas fa-chevron-down"></i>
+        </div>
     </section>
 
-    <section class="features" id="features">
+    <section class="section features" id="features">
         <div class="container">
             <div class="section-header">
                 <h2>Why Choose LayoverX</h2>
-                <p>Discover unique experiences designed for travelers with limited time</p>
+                <p>Premium experiences designed for travelers who refuse to waste time</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card">
@@ -705,7 +1053,7 @@
                             <i class="fas fa-bolt"></i>
                         </div>
                         <h3>Quick Experiences</h3>
-                        <p>Curated micro-adventures designed to fit perfectly within your layover duration. No wasted time, maximum adventure.</p>
+                        <p>Curated micro-adventures designed to fit perfectly within your layover duration. Every minute optimized for maximum impact.</p>
                     </div>
                 </div>
                 <div class="feature-card">
@@ -715,28 +1063,28 @@
                             <i class="fas fa-map-marked-alt"></i>
                         </div>
                         <h3>Local Guides</h3>
-                        <p>Connect with knowledgeable local guides who know the hidden gems and authentic experiences of their city.</p>
+                        <p>Connect with passionate local experts who reveal hidden gems and authentic experiences you'd never find in guidebooks.</p>
                     </div>
                 </div>
                 <div class="feature-card">
                     <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Seamless Travel" class="feature-image">
                     <div class="feature-content">
                         <div class="feature-icon">
-                            <i class="fas fa-plane-arrival"></i>
+                            <i class="fas fa-shield-alt"></i>
                         </div>
                         <h3>Seamless Travel</h3>
-                        <p>Hassle-free airport transfers and coordinated timing ensure you return to your flight stress-free.</p>
+                        <p> worry-free airport transfers and perfectly timed logistics ensure you never miss your connection.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="destinations" id="destinations">
+    <section class="section destinations" id="destinations">
         <div class="container">
             <div class="section-header">
                 <h2>Popular Destinations</h2>
-                <p>Explore top layover destinations around the world</p>
+                <p>Discover trending layover experiences around the world</p>
             </div>
             <div class="destinations-grid">
                 <div class="destination-card">
@@ -747,6 +1095,7 @@
                             <p>United Arab Emirates</p>
                         </div>
                     </div>
+                    <div class="destination-price">From $89</div>
                 </div>
                 <div class="destination-card">
                     <img src="https://images.unsplash.com/photo-1525625293386-3f8f99389ffd?w=600&q=80" alt="Singapore">
@@ -756,6 +1105,7 @@
                             <p>Singapore</p>
                         </div>
                     </div>
+                    <div class="destination-price">From $75</div>
                 </div>
                 <div class="destination-card">
                     <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=600&q=80" alt="Istanbul">
@@ -765,6 +1115,7 @@
                             <p>Turkey</p>
                         </div>
                     </div>
+                    <div class="destination-price">From $65</div>
                 </div>
                 <div class="destination-card">
                     <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&q=80" alt="Paris">
@@ -774,6 +1125,7 @@
                             <p>France</p>
                         </div>
                     </div>
+                    <div class="destination-price">From $95</div>
                 </div>
                 <div class="destination-card">
                     <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=600&q=80" alt="Tokyo">
@@ -783,6 +1135,7 @@
                             <p>Japan</p>
                         </div>
                     </div>
+                    <div class="destination-price">From $85</div>
                 </div>
                 <div class="destination-card">
                     <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?w=600&q=80" alt="New York">
@@ -792,42 +1145,43 @@
                             <p>United States</p>
                         </div>
                     </div>
+                    <div class="destination-price">From $79</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="how-it-works" id="how-it-works">
+    <section class="section how-it-works" id="how-it-works">
         <div class="container">
             <div class="section-header">
                 <h2>How It Works</h2>
-                <p>Three simple steps to transform your layover</p>
+                <p>Three simple steps to transform your layover into an adventure</p>
             </div>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Enter Layover</h3>
-                    <p>Input your departure city, layover destination, and available time</p>
+                    <p>Input your arrival city, layover destination, and available hours</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <h3>Choose Experience</h3>
-                    <p>Browse curated micro-trips that fit your schedule perfectly</p>
+                    <p>Browse curated micro-adventures that fit your timeline perfectly</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <h3>Book Instantly</h3>
-                    <p>Secure your spot with instant booking and get ready to explore</p>
+                    <p>Secure your spot with instant confirmation and start exploring</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials" id="testimonials">
+    <section class="section testimonials" id="testimonials">
         <div class="container">
             <div class="section-header">
-                <h2>What Travelers Say</h2>
-                <p>Real experiences from our community</p>
+                <h2> traveler Stories</h2>
+                <p>Real experiences from our global community</p>
             </div>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
@@ -839,13 +1193,9 @@
                         </div>
                     </div>
                     <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"LayoverX transformed my 6-hour Dubai layover into an unforgettable desert adventure. Worth every minute!"</p>
+                    <p class="testimonial-text">"LayoverX transformed my 6-hour Dubai layover into an unforgettable desert adventure. Every minute was worth it!"</p>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -856,13 +1206,9 @@
                         </div>
                     </div>
                     <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                     </div>
-                    <p class="testimonial-text">"As a frequent business traveler, LayoverX gives me a way to actually experience cities I usually just transit through."</p>
+                    <p class="testimonial-text">"As a frequent business traveler, LayoverX finally lets me experience the cities I always just transit through."</p>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -873,13 +1219,9 @@
                         </div>
                     </div>
                     <div class="testimonial-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
                     </div>
-                    <p class="testimonial-text">"The local guide in Singapore showed me places I'd never find in a guidebook. Best layover ever!"</p>
+                    <p class="testimonial-text">"My local guide in Singapore showed me hidden spots I'd never find in any guidebook. Best layover ever!"</p>
                 </div>
             </div>
         </div>
@@ -889,9 +1231,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-<a href="#" class="logo-link">
-                    <img src="images/logo.png" alt="LayoverX Logo" class="logo-img">
-                </a>
+                    <a href="#" class="logo-link">
+                        <img src="images/logo.png" alt="LayoverX Logo" class="logo-img">
+                    </a>
                     <p>Transform your travel layovers into unforgettable experiences. Explore the world, one stop at a time.</p>
                     <div class="footer-social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -930,7 +1272,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 LayoverX. All rights reserved.</p>
-                <p>Made with <i class="fas fa-heart" style="color: var(--accent);"></i> for travelers</p>
+                <p>Made with <i class="fas fa-heart"></i> for travelers worldwide</p>
             </div>
         </div>
     </footer>
@@ -955,6 +1297,27 @@
                     });
                 }
             });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .destination-card, .testimonial-card, .step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
