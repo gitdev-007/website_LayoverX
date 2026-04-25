@@ -6,12 +6,11 @@
     <title>LayoverX - Turn Your Layovers into Experiences</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary: #0B1D3A;
-            --primary-light: #1E3A5F;
             --accent: #ff4d6d;
             --accent-light: #ff6b81;
             --accent-dark: #ff3355;
@@ -22,7 +21,6 @@
             --bg-soft: #F7F9FC;
             --bg-white: #FFFFFF;
             --bg-section: #F1F5F9;
-            --glass-bg: rgba(255, 255, 255, 0.7);
             --glass-border: rgba(0, 0, 0, 0.06);
             --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
             --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
@@ -54,31 +52,9 @@
             padding: 0 32px;
         }
 
-        .bg-gradient {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            z-index: -1;
-            background: 
-                url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80') center/cover no-repeat;
-            opacity: 0.05;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
         }
 
         @keyframes gradientMove {
@@ -87,6 +63,7 @@
             100% { background-position: 0% 50%; }
         }
 
+        /* Navbar */
         nav {
             position: fixed;
             top: 0;
@@ -94,13 +71,13 @@
             right: 0;
             z-index: 1000;
             padding: 20px 0;
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
         nav.scrolled {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 14px 0;
             border-bottom: 1px solid var(--glass-border);
         }
@@ -111,104 +88,39 @@
             align-items: center;
         }
 
-        .logo-link {
-            display: flex;
-            align-items: center;
+        .logo {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
             text-decoration: none;
         }
 
-        .logo-icon {
-            font-family: 'Playfair Display', serif;
-            font-size: 32px;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .logo span {
+            color: var(--accent);
         }
 
         .nav-menu {
             display: flex;
-            gap: 40px;
+            gap: 36px;
             list-style: none;
-            align-items: center;
         }
 
-        .nav-item {
-            position: relative;
-        }
-
-        .nav-link {
+        .nav-menu a {
             color: var(--text-gray);
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
-            padding: 10px 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
             transition: color 0.3s ease;
         }
 
-        .nav-link:hover {
+        .nav-menu a:hover {
             color: var(--text-dark);
-        }
-
-        .nav-link i {
-            font-size: 10px;
-            transition: transform 0.3s ease;
-        }
-
-        .nav-item:hover .nav-link i {
-            transform: rotate(180deg);
-        }
-
-        .features-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(10px);
-            min-width: 200px;
-            padding: 14px 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 14px;
-            box-shadow: var(--shadow-lg);
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.25s ease;
-        }
-
-        .nav-item:hover .features-dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) translateY(0);
-        }
-
-        .feature-link {
-            display: block;
-            padding: 12px 28px;
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .feature-link:hover {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            transform: translateX(5px);
         }
 
         .nav-actions {
             display: flex;
-            gap: 12px;
+            gap: 14px;
             align-items: center;
         }
 
@@ -236,17 +148,16 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.35);
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
         }
 
         .btn-outline {
-            background: var(--bg-white);
+            background: transparent;
             border: 1px solid var(--glass-border);
             color: var(--text-dark);
         }
 
         .btn-outline:hover {
-            background: var(--bg-light);
             border-color: var(--accent);
             color: var(--accent);
         }
@@ -256,12 +167,13 @@
             font-size: 16px;
         }
 
+        /* Hero Section */
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
-            padding-top: 100px;
+            padding-top: 120px;
             overflow: hidden;
         }
 
@@ -271,67 +183,61 @@
             z-index: -1;
         }
 
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, 
-                rgba(234, 243, 255, 0.25) 0%,
-                rgba(247, 249, 252, 0.5) 50%,
-                rgba(234, 243, 255, 0.3) 100%);
-        }
-
         .hero-bg img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .hero-glow {
+        .hero-bg::before {
+            content: '';
             position: absolute;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 77, 109, 0.08) 0%, transparent 60%);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            animation: pulse 6s ease-in-out infinite;
+            inset: 0;
+            background: linear-gradient(180deg, 
+                rgba(11, 29, 58, 0.4) 0%,
+                rgba(11, 29, 58, 0.6) 50%,
+                rgba(11, 29, 58, 0.8) 100%);
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
+            text-align: center;
             max-width: 800px;
             margin: 0 auto;
-            text-align: center;
+            padding: 60px 0;
         }
 
-        .hero-badge {
+        .hero-icon {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 22px;
-            background: rgba(255, 77, 109, 0.1);
-            border: 1px solid rgba(255, 77, 109, 0.25);
-            border-radius: 50px;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--accent);
-            margin-bottom: 28px;
-            animation: fadeInUp 0.8s ease forwards;
+            justify-content: center;
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .hero-icon i {
+            font-size: 24px;
+            color: white;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(48px, 7vw, 84px);
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(42px, 6vw, 64px);
             font-weight: 700;
-            line-height: 1.08;
-            margin-bottom: 28px;
-            letter-spacing: -2px;
-            color: var(--text-dark);
-            animation: fadeInUp 0.8s ease 0.2s forwards;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            animation: fadeInUp 0.6s ease 0.2s forwards;
             opacity: 0;
+        }
+
+        .hero h1 .dark {
+            color: white;
         }
 
         .hero h1 .highlight {
@@ -343,256 +249,54 @@
 
         .hero-subtitle {
             font-size: 18px;
-            color: var(--text-gray);
-            margin-bottom: 44px;
-            max-width: 540px;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 36px;
+            max-width: 520px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
-            line-height: 1.7;
-            animation: fadeInUp 0.8s ease 0.4s forwards;
+            animation: fadeInUp 0.6s ease 0.4s forwards;
             opacity: 0;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 16px;
+            gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
             margin-bottom: 0;
-            animation: fadeInUp 0.8s ease 0.6s forwards;
+            animation: fadeInUp 0.6s ease 0.6s forwards;
             opacity: 0;
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-light);
-            font-size: 12px;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .scroll-indicator i {
-            font-size: 20px;
-        }
-
-        .section {
-            padding: 120px 0;
-            position: relative;
+        /* Steps Section */
+        .steps-section {
+            padding: 100px 0;
+            background: var(--bg-soft);
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 64px;
+            margin-bottom: 56px;
         }
 
         .section-header h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(38px, 5vw, 56px);
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(32px, 4vw, 44px);
             font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
             color: var(--text-dark);
+            margin-bottom: 12px;
         }
 
         .section-header p {
             color: var(--text-gray);
-            font-size: 18px;
-            max-width: 500px;
-            margin: 0 auto;
-            font-weight: 400;
+            font-size: 16px;
         }
 
-        .video-section {
-            background: var(--bg-soft);
-        }
-
-        .video-container {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            border-radius: var(--radius);
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-        }
-
-        .video-thumbnail {
-            position: relative;
-            aspect-ratio: 16/9;
-            overflow: hidden;
-        }
-
-        .video-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .video-container:hover .video-thumbnail img {
-            transform: scale(1.05);
-        }
-
-        .video-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .play-btn-large {
-            width: 80px;
-            height: 80px;
-            background: rgba(255, 77, 109, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 40px rgba(255, 77, 109, 0.4);
-        }
-
-        .play-btn-large:hover {
-            background: var(--accent);
-            transform: scale(1.1);
-        }
-
-        .play-btn-large i {
-            color: white;
-            font-size: 28px;
-            margin-left: 4px;
-        }
-
-        .video-modal {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            background: rgba(0, 0, 0, 0.95);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
-
-        .video-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            position: relative;
-            max-width: 900px;
-            width: 90%;
-            aspect-ratio: 16/9;
-            background: #000;
-            border-radius: var(--radius);
-            overflow: hidden;
-            transform: scale(0.9);
-            transition: transform 0.4s ease;
-        }
-
-        .video-modal.active .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 28px;
-            cursor: pointer;
-        }
-
-        .modal-close:hover {
-            transform: scale(1.2);
-        }
-
-        .video-embed iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .features {
-            background: var(--bg-white);
-        }
-
-        .features-grid {
+        .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 28px;
-        }
-
-        .feature-card {
-            background: var(--bg-white);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--radius);
-            padding: 40px 32px;
-            text-align: center;
-            transition: all 0.4s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            margin: 0 auto 24px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            color: white;
-            transition: all 0.4s ease;
-        }
-
-        .feature-card:hover .feature-icon {
-            transform: scale(1.1);
-            box-shadow: 0 10px 30px rgba(255, 77, 109, 0.3);
-        }
-
-        .feature-card h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-            font-size: 14px;
-            line-height: 1.7;
-        }
-
-        .how-it-works {
-            background: var(--bg-section);
-        }
-
-        .steps-container {
-            display: flex;
-            justify-content: space-between;
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
@@ -600,207 +304,182 @@
 
         .steps-line {
             position: absolute;
-            top: 50px;
-            left: 12%;
-            right: 12%;
+            top: 60px;
+            left: 20%;
+            right: 20%;
             height: 2px;
             background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 77, 109, 0.3) 50%, transparent 100%);
+            z-index: 0;
         }
 
-        .step-item {
-            flex: 1;
+        .step-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: 36px 28px;
             text-align: center;
             position: relative;
             z-index: 1;
-            max-width: 200px;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
         }
 
-        .step-icon {
-            width: 100px;
-            height: 100px;
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .step-number {
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 32px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 24px;
-            font-size: 36px;
+            font-size: 20px;
+            font-weight: 700;
             color: white;
-            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.25);
-            position: relative;
+            box-shadow: 0 12px 24px rgba(255, 77, 109, 0.25);
         }
 
-        .step-icon::after {
-            content: '';
-            position: absolute;
-            inset: -4px;
-            border-radius: 36px;
-            border: 2px solid rgba(255, 77, 109, 0.2);
-        }
-
-        .step-item h3 {
+        .step-card h3 {
             font-size: 20px;
             font-weight: 600;
-            margin-bottom: 8px;
             color: var(--text-dark);
+            margin-bottom: 10px;
         }
 
-        .step-item p {
+        .step-card p {
             color: var(--text-gray);
             font-size: 14px;
+            line-height: 1.6;
         }
 
-.cta-section {
-            padding: 140px 0;
+        .steps-cta {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            margin-top: 48px;
+        }
+
+        .link-btn {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .link-btn:hover {
+            color: var(--accent-dark);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 100px 0;
             background: var(--bg-white);
-            position: relative;
-            overflow: hidden;
         }
 
-        .cta-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(234, 243, 255, 0.3) 100%);
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
         }
 
-        .cta-bg {
-            position: absolute;
-            inset: 0;
-            z-index: 0;
-        }
-
-        .cta-bg::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.95) 100%);
-        }
-
-        .cta-bg img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.15;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
+        .feature-card {
+            background: var(--bg-section);
+            border-radius: var(--radius);
+            padding: 32px 28px;
             text-align: center;
-            max-width: 700px;
-            margin: 0 auto;
+            transition: all 0.4s ease;
+            border: 1px solid var(--glass-border);
         }
 
-        .cta-content h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(36px, 5vw, 56px);
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -1px;
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow);
+            border-color: var(--accent);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 600;
             color: var(--text-dark);
+            margin-bottom: 10px;
         }
 
-        .cta-content p {
+        .feature-card p {
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            background: var(--bg-soft);
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(32px, 4vw, 44px);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+        }
+
+        .cta-section p {
             color: var(--text-gray);
             font-size: 18px;
-            margin-bottom: 40px;
-            font-weight: 400;
+            margin-bottom: 32px;
         }
 
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        /* Footer */
         footer {
-            background: var(--bg-soft);
-            padding: 60px 0 30px;
+            background: var(--bg-white);
+            padding: 50px 0 24px;
             border-top: 1px solid var(--glass-border);
         }
 
         .footer-grid {
             display: grid;
             grid-template-columns: 1.5fr repeat(3, 1fr);
-            gap: 50px;
-            margin-bottom: 50px;
+            gap: 48px;
+            margin-bottom: 40px;
         }
 
-        .footer-brand .logo-icon {
-            font-size: 36px;
+        .footer-brand .logo {
             display: inline-block;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
 
         .footer-brand p {
             color: var(--text-gray);
             font-size: 14px;
-            margin: 16px 0 24px;
-            max-width: 260px;
+            margin: 14px 0 20px;
+            max-width: 240px;
             line-height: 1.7;
         }
 
-        .newsletter-form {
-            display: flex;
-            gap: 10px;
-        }
-
-        .newsletter-form input {
-            flex: 1;
-            padding: 14px 20px;
-            background: var(--bg-light);
-            border: 1px solid var(--glass-border);
-            border-radius: 50px;
-            color: var(--text-dark);
-            font-size: 14px;
-        }
-
-        .newsletter-form input::placeholder {
-            color: var(--text-light);
-        }
-
-        .newsletter-form input:focus {
-            outline: none;
-            border-color: var(--accent);
-        }
-
-        .newsletter-form button {
-            padding: 14px 24px;
-        }
-
-        .footer-social {
-            display: flex;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .footer-social a {
-            width: 44px;
-            height: 44px;
-            background: var(--bg-light);
-            border: 1px solid var(--glass-border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-gray);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .footer-social a:hover {
-            background: var(--accent);
-            border-color: var(--accent);
-            color: white;
-            transform: translateY(-3px);
-        }
-
         .footer-links h4 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             color: var(--text-dark);
         }
 
@@ -809,7 +488,7 @@
         }
 
         .footer-links li {
-            margin-bottom: 14px;
+            margin-bottom: 12px;
         }
 
         .footer-links a {
@@ -824,7 +503,7 @@
         }
 
         .footer-bottom {
-            padding-top: 24px;
+            padding-top: 20px;
             border-top: 1px solid var(--glass-border);
             display: flex;
             justify-content: space-between;
@@ -836,33 +515,24 @@
             font-size: 13px;
         }
 
-        .footer-bottom p:last-child {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .footer-bottom i {
-            color: var(--accent);
-        }
-
+        /* Responsive */
         @media (max-width: 1024px) {
             .nav-menu {
                 display: none;
             }
 
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .steps-container {
-                flex-wrap: wrap;
-                gap: 40px;
-                justify-content: center;
+            .steps-grid {
+                grid-template-columns: 1fr;
+                gap: 24px;
+                max-width: 400px;
             }
 
             .steps-line {
                 display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
             .footer-grid {
@@ -876,11 +546,20 @@
             }
 
             .hero h1 {
-                font-size: 42px;
+                font-size: 38px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .steps-cta {
+                flex-direction: column;
+                align-items: center;
             }
 
             .footer-grid {
@@ -890,44 +569,26 @@
 
             .footer-bottom {
                 flex-direction: column;
-                gap: 16px;
+                gap: 14px;
                 text-align: center;
             }
         }
     </style>
 </head>
 <body>
-    <div class="bg-gradient"></div>
-
     <nav id="navbar">
         <div class="container">
             <div class="nav-content">
-                <a href="#" class="logo-link">
-                    <span class="logo-icon">LX</span>
-                </a>
+                <a href="#" class="logo">LX<span></span></a>
                 <ul class="nav-menu">
-                    <li class="nav-item">
-                        <a href="#features" class="nav-link">
-                            Features <i class="fas fa-chevron-down"></i>
-                        </a>
-                        <div class="features-dropdown">
-                            <a href="#features" class="feature-link">Hotels</a>
-                            <a href="#features" class="feature-link">Restaurants</a>
-                            <a href="#features" class="feature-link">Spa</a>
-                            <a href="#features" class="feature-link">Gaming Zone</a>
-                            <a href="#features" class="feature-link">City Tours</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#how-it-works" class="nav-link">How It Works</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#video-section" class="nav-link">About</a>
-                    </li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#steps">How It Works</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="#" class="btn btn-outline">Sign In</a>
-                    <a href="#" class="btn btn-primary">Get Started</a>
+                    <a href="#steps" class="btn btn-primary">Plan My Layover</a>
                 </div>
             </div>
         </div>
@@ -935,64 +596,61 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" alt="Airplane wing at sunset">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" alt="Airplane wing at golden hour">
         </div>
-        <div class="hero-glow"></div>
-        
         <div class="container">
             <div class="hero-content">
-                <div class="hero-badge">
-                    <span>✈</span> Transform Your Journey
+                <div class="hero-icon">
+                    <i class="fas fa-plane"></i>
                 </div>
-                <h1>Turn Your Layovers Into <span class="highlight">Experiences</span></h1>
-                <p class="hero-subtitle">Discover curated experiences, relax, explore, and make every layover unforgettable.</p>
+                <h1>
+                    <span class="dark">Turn Your Layovers Into </span>
+                    <span class="highlight">Experiences</span>
+                </h1>
+                <p class="hero-subtitle">Find lounges, short stays, and city experiences during your layover — all in one place.</p>
                 <div class="hero-buttons">
-                    <a href="#features" class="btn btn-primary btn-large">Explore Now</a>
-                    <a href="#how-it-works" class="btn btn-outline btn-large">How It Works</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="scroll-indicator">
-            <span>Scroll to explore</span>
-            <i class="fas fa-chevron-down"></i>
-        </div>
-    </section>
-
-    <section class="section video-section" id="video-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>See How LayoverX Works</h2>
-                <p>Watch how easy it is to transform your layover</p>
-            </div>
-            <div class="video-container" onclick="openVideo()">
-                <div class="video-thumbnail">
-                    <img src="https://images.unsplash.com/photo-1506012787146-f92b2d7d6d96?w=1200&q=80" alt="LayoverX Overview">
-                </div>
-                <div class="video-overlay">
-                    <div class="play-btn-large">
-                        <i class="fas fa-play"></i>
-                    </div>
+                    <a href="#steps" class="btn btn-primary btn-large">Plan My Layover</a>
+                    <a href="#features" class="btn btn-outline btn-large">How It Works</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="video-modal" id="videoModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeVideo()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="video-embed">
-                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
-
-    <section class="section features" id="features">
+    <section class="steps-section" id="steps">
         <div class="container">
             <div class="section-header">
-                <h2>Premium Layover Experiences</h2>
+                <h2>Plan Your Perfect Layover in 3 Simple Steps</h2>
+                <p>From landing to takeoff, we help you make the most of your time.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="steps-line"></div>
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3>Enter Your Layover</h3>
+                    <p>Add your airport and layover duration</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3>Explore Options</h3>
+                    <p>Browse lounges, stays, and local experiences</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Book Instantly</h3>
+                    <p>Reserve everything in just a few clicks</p>
+                </div>
+            </div>
+            <div class="steps-cta">
+                <a href="#" class="btn btn-primary">Plan My Layover</a>
+                <a href="#features" class="link-btn">Browse Experiences →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Layover Experiences</h2>
                 <p>Everything you need to make the most of your layover</p>
             </div>
             <div class="features-grid">
@@ -1000,79 +658,33 @@
                     <div class="feature-icon">
                         <i class="fas fa-bed"></i>
                     </div>
-                    <h3>Premium Hotels</h3>
-                    <p>Luxury stays with day rooms available near airports for rest and rejuvenation.</p>
+                    <h3>Room Stay</h3>
+                    <p>Luxury day rooms at premium hotels near the airport.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Airport Lounges</h3>
+                    <p>Relax in comfort at exclusive airport lounges.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">
                         <i class="fas fa-utensils"></i>
                     </div>
                     <h3>Fine Dining</h3>
-                    <p>Curated culinary experiences at top-rated restaurants near the airport.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-spa"></i>
-                    </div>
-                    <h3>Spa & Wellness</h3>
-                    <p>Relaxation and rejuvenation at premium spa facilities.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section how-it-works" id="how-it-works">
-        <div class="container">
-            <div class="section-header">
-                <h2>How It Works</h2>
-                <p>Four simple steps to transform your layover</p>
-            </div>
-            <div class="steps-container">
-                <div class="steps-line"></div>
-                <div class="step-item">
-                    <div class="step-icon">
-                        <i class="fas fa-search"></i>
-                    </div>
-                    <h3>Search</h3>
-                    <p>Enter your layover details</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-icon">
-                        <i class="fas fa-compass"></i>
-                    </div>
-                    <h3>Discover</h3>
-                    <p>Browse curated experiences</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-icon">
-                        <i class="fas fa-calendar-check"></i>
-                    </div>
-                    <h3>Book</h3>
-                    <p>Reserve instantly</p>
-                </div>
-                <div class="step-item">
-                    <div class="step-icon">
-                        <i class="fas fa-sun"></i>
-                    </div>
-                    <h3>Enjoy</h3>
-                    <p>Make memories</p>
+                    <p>Curated dining experiences near the airport.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="cta-section">
-        <div class="cta-bg">
-            <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1920&q=80" alt="City from above">
-        </div>
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to Transform Your Layover?</h2>
-                <p>Join thousands of travelers who have discovered a better way to travel.</p>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary btn-large">Get Started</a>
-                    <a href="#how-it-works" class="btn btn-outline btn-large">Learn More</a>
-                </div>
+                <p>Join thousands of travelers who make every layover count.</p>
+                <a href="#" class="btn btn-primary btn-large">Plan My Layover</a>
             </div>
         </div>
     </section>
@@ -1081,18 +693,8 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <span class="logo-icon">LX</span>
+                    <a href="#" class="logo">LX<span></span></a>
                     <p>Transform your travel layovers into unforgettable experiences. Explore the world, one stop at a time.</p>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Enter your email">
-                        <button class="btn btn-primary">Subscribe</button>
-                    </div>
-                    <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>Company</h4>
@@ -1124,7 +726,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 LayoverX. All rights reserved.</p>
-                <p>Made with <i class="fas fa-heart"></i> for travelers worldwide</p>
+                <p>Made with <i class="fas fa-heart" style="color: var(--accent);"></i> for travelers</p>
             </div>
         </div>
     </footer>
@@ -1149,28 +751,6 @@
                     });
                 }
             });
-        });
-
-        function openVideo() {
-            document.getElementById('videoModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeVideo() {
-            document.getElementById('videoModal').classList.remove('active');
-            document.body.style.overflow = '';
-        }
-
-        document.getElementById('videoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeVideo();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeVideo();
-            }
         });
     </script>
 </body>
