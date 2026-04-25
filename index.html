@@ -75,11 +75,11 @@
         }
 
         nav.scrolled {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(11, 29, 58, 0.95);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             padding: 14px 0;
-            border-bottom: 1px solid var(--glass-border);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .nav-content {
@@ -92,7 +92,7 @@
             font-family: 'Poppins', sans-serif;
             font-size: 28px;
             font-weight: 700;
-            color: var(--text-dark);
+            color: white;
             text-decoration: none;
         }
 
@@ -107,15 +107,16 @@
         }
 
         .nav-menu a {
-            color: var(--text-gray);
+            color: rgba(255, 255, 255, 0.9);
             text-decoration: none;
             font-weight: 500;
             font-size: 14px;
+            letter-spacing: 0.3px;
             transition: color 0.3s ease;
         }
 
         .nav-menu a:hover {
-            color: var(--text-dark);
+            color: var(--accent);
         }
 
         .nav-actions {
@@ -153,11 +154,12 @@
 
         .btn-outline {
             background: transparent;
-            border: 1px solid var(--glass-border);
-            color: var(--text-dark);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: white;
         }
 
         .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
             border-color: var(--accent);
             color: var(--accent);
         }
@@ -194,9 +196,21 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(180deg, 
-                rgba(11, 29, 58, 0.4) 0%,
-                rgba(11, 29, 58, 0.6) 50%,
-                rgba(11, 29, 58, 0.8) 100%);
+                rgba(11, 29, 58, 0.85) 0%,
+                rgba(11, 29, 58, 0.5) 40%,
+                rgba(11, 29, 58, 0.3) 100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 140px;
+            background: linear-gradient(180deg, 
+                rgba(11, 29, 58, 0.7) 0%,
+                transparent 100%);
+            z-index: 1;
         }
 
         .hero-content {
@@ -296,10 +310,15 @@
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
+            gap: 24px;
             position: relative;
             max-width: 1000px;
             margin: 0 auto;
+        }
+
+        .steps-grid.six-cards {
+            grid-template-columns: repeat(3, 1fr);
+            max-width: 1100px;
         }
 
         .steps-line {
@@ -315,7 +334,37 @@
         .step-card {
             background: var(--bg-white);
             border-radius: var(--radius);
-            padding: 36px 28px;
+            padding: 32px 24px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            transition: all 0.4s ease;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--glass-border);
+        }
+
+        .step-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 24px;
+            color: white;
+        }
+
+        .step-number {
+            display: none;
+        }
             text-align: center;
             position: relative;
             z-index: 1;
@@ -378,7 +427,7 @@
         /* Features Section */
         .features {
             padding: 100px 0;
-            background: var(--bg-white);
+            background: var(--bg-soft);
         }
 
         .features-grid {
@@ -387,19 +436,80 @@
             gap: 24px;
         }
 
+        .features-grid.premium-grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
         .feature-card {
-            background: var(--bg-section);
+            background: var(--bg-white);
             border-radius: var(--radius);
-            padding: 32px 28px;
-            text-align: center;
+            padding: 0;
+            text-align: left;
             transition: all 0.4s ease;
             border: 1px solid var(--glass-border);
+            overflow: hidden;
         }
 
         .feature-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
             border-color: var(--accent);
+        }
+
+        .premium-card .feature-image {
+            width: 100%;
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .premium-card .feature-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .premium-card:hover .feature-image img {
+            transform: scale(1.08);
+        }
+
+        .premium-card .feature-content {
+            padding: 24px;
+        }
+
+        .premium-card .feature-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 0 16px;
+            font-size: 22px;
+            color: white;
+        }
+
+        .premium-card h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .premium-card p {
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.65;
+        }
+
+        .features-cta {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            align-items: center;
+            margin-top: 48px;
         }
 
         .feature-icon {
@@ -429,31 +539,251 @@
         }
 
         /* CTA Section */
-        .cta-section {
+        .journey-section {
             padding: 100px 0;
-            background: var(--bg-soft);
-            text-align: center;
+            background: var(--bg-white);
         }
 
-        .cta-section h2 {
+        .journey-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .journey-content h2 {
             font-family: 'Poppins', sans-serif;
             font-size: clamp(32px, 4vw, 44px);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 16px;
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        .cta-section p {
+        .journey-content > p {
+            color: var(--text-gray);
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .journey-list {
+            list-style: none;
+        }
+
+        .journey-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+            font-size: 15px;
+        }
+
+        .journey-list i {
+            color: var(--accent);
+            margin-top: 4px;
+        }
+
+        .journey-image {
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .journey-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .journey-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .cta-section {
+            padding: 120px 0;
+            background: linear-gradient(180deg, #F7F9FC 0%, #E8EFF5 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+        }
+
+        .cta-section h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: clamp(36px, 5vw, 52px);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 14px;
+        }
+
+        .cta-section .subtitle {
             color: var(--text-gray);
             font-size: 18px;
-            margin-bottom: 32px;
+            margin-bottom: 24px;
+            max-width: 420px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-micro-points {
+            display: flex;
+            justify-content: center;
+            gap: 28px;
+            margin-bottom: 36px;
+            flex-wrap: wrap;
+        }
+
+        .cta-micro-points span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .cta-micro-points i {
+            color: var(--accent);
+        }
+
+        .cta-trust {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 28px;
+        }
+
+        .cta-trust i {
+            color: #FFC107;
+            margin-right: 4px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s ease 0.3s forwards;
+            opacity: 0;
         }
 
         /* Footer */
         footer {
-            background: var(--bg-white);
-            padding: 50px 0 24px;
+            background: #F7F9FC;
+            padding: 64px 0 24px;
             border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr repeat(4, 1fr);
+            gap: 40px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand {
+            padding-right: 20px;
+        }
+
+        .footer-brand .logo-full {
+            font-family: 'Poppins', sans-serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            color: var(--text-gray);
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 22px;
+            max-width: 280px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social a {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-white);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 14px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            padding-top: 28px;
+            border-top: 1px solid var(--glass-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: var(--text-light);
+            font-size: 13px;
+        }
+
+        .footer-bottom p:last-child {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
         }
 
         .footer-grid {
@@ -533,6 +863,8 @@
 
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+                margin: 0 auto;
             }
 
             .footer-grid {
@@ -551,6 +883,21 @@
 
             .hero-buttons {
                 flex-direction: column;
+
+            }
+
+            .features-grid,
+            .premium-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .journey-image {
+                order: -1;
+            }
             }
 
             .features-grid {
@@ -583,7 +930,7 @@
                 <ul class="nav-menu">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#steps">How It Works</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#journey">About</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
                 <div class="nav-actions">
@@ -598,6 +945,7 @@
         <div class="hero-bg">
             <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" alt="Airplane wing at golden hour">
         </div>
+        <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
                 <div class="hero-icon">
@@ -619,25 +967,39 @@
     <section class="steps-section" id="steps">
         <div class="container">
             <div class="section-header">
-                <h2>Plan Your Perfect Layover in 3 Simple Steps</h2>
-                <p>From landing to takeoff, we help you make the most of your time.</p>
+                <h2>Everything You Need for a Perfect Layover</h2>
+                <p>From comfort to exploration, LayoverX gives you complete control over your time.</p>
             </div>
-            <div class="steps-grid">
-                <div class="steps-line"></div>
+            <div class="steps-grid six-cards">
                 <div class="step-card">
-                    <div class="step-number">01</div>
-                    <h3>Enter Your Layover</h3>
-                    <p>Add your airport and layover duration</p>
+                    <div class="step-icon"><i class="fas fa-couch"></i></div>
+                    <h3>Airport Lounges</h3>
+                    <p>Relax in premium lounges with food, Wi-Fi, and comfort.</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-number">02</div>
-                    <h3>Explore Options</h3>
-                    <p>Browse lounges, stays, and local experiences</p>
+                    <div class="step-icon"><i class="fas fa-bed"></i></div>
+                    <h3>Short Stays</h3>
+                    <p>Book nearby hotels or airport pods for quick rest.</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-number">03</div>
-                    <h3>Book Instantly</h3>
-                    <p>Reserve everything in just a few clicks</p>
+                    <div class="step-icon"><i class="fas fa-map-marked-alt"></i></div>
+                    <h3>City Experiences</h3>
+                    <p>Explore local attractions within your layover time.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-robot"></i></div>
+                    <h3>Smart Recommendations</h3>
+                    <p>Get suggestions based on your layover duration.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-bolt"></i></div>
+                    <h3>Instant Booking</h3>
+                    <p>Reserve everything in just a few clicks.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Real-Time Planning</h3>
+                    <p>Stay on track with time-aware planning tools.</p>
                 </div>
             </div>
             <div class="steps-cta">
@@ -650,41 +1012,115 @@
     <section class="features" id="features">
         <div class="container">
             <div class="section-header">
-                <h2>Layover Experiences</h2>
-                <p>Everything you need to make the most of your layover</p>
+                <h2>Curated Layover Experiences</h2>
+                <p>Make the most of every layover with handpicked options designed for comfort, convenience, and exploration.</p>
             </div>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-bed"></i>
+            <div class="features-grid premium-grid">
+                <div class="feature-card premium-card">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1542314834-0687f104e558?w=600&q=80" alt="Airport Lounge">
                     </div>
-                    <h3>Room Stay</h3>
-                    <p>Luxury day rooms at premium hotels near the airport.</p>
+                    <div class="feature-content">
+                        <div class="feature-icon"><i class="fas fa-couch"></i></div>
+                        <h3>Airport Lounges</h3>
+                        <p>Access premium lounges with food, Wi-Fi, and a peaceful environment to relax between flights.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-couch"></i>
+                <div class="feature-card premium-card">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Hotel Room">
                     </div>
-                    <h3>Airport Lounges</h3>
-                    <p>Relax in comfort at exclusive airport lounges.</p>
+                    <div class="feature-content">
+                        <div class="feature-icon"><i class="fas fa-bed"></i></div>
+                        <h3>Short Stays & Nap Pods</h3>
+                        <p>Recharge with flexible hotel rooms or airport sleeping pods tailored to your layover duration.</p>
+                    </div>
                 </div>
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-utensils"></i>
+                <div class="feature-card premium-card">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1589802829984-817d1af2031c?w=600&q=80" alt="City Tour">
                     </div>
-                    <h3>Fine Dining</h3>
-                    <p>Curated dining experiences near the airport.</p>
+                    <div class="feature-content">
+                        <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
+                        <h3>Local Experiences</h3>
+                        <p>Explore nearby attractions, guided tours, and city highlights within your available time.</p>
+                    </div>
+                </div>
+                <div class="feature-card premium-card">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Fine Dining">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+                        <h3>Dining Experiences</h3>
+                        <p>Discover curated restaurants and fine dining options near your airport.</p>
+                    </div>
+                </div>
+                <div class="feature-card premium-card">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab90ce7e1d1?w=600&q=80" alt="Spa">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon"><i class="fas fa-spa"></i></div>
+                        <h3>Wellness & Relaxation</h3>
+                        <p>Book spas, showers, and wellness services to refresh during your journey.</p>
+                    </div>
+                </div>
+                <div class="feature-card premium-card">
+                    <div class="feature-image">
+                        <img src="https://images.unsplash.com/photo-1457129011199-c99eca2d1d17?w=600&q=80" alt="Smart Planning">
+                    </div>
+                    <div class="feature-content">
+                        <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                        <h3>Smart Itineraries</h3>
+                        <p>Get personalized plans based on your layover time, preferences, and airport location.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="features-cta">
+                <a href="#" class="btn btn-primary btn-large">Explore All Experiences</a>
+                <a href="#steps" class="link-btn">Plan My Layover</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="journey-section" id="journey">
+        <div class="container">
+            <div class="journey-grid">
+                <div class="journey-content">
+                    <h2>Designed Around Your Journey</h2>
+                    <p>Layovers no longer have to mean waiting at the airport. With LayoverX, you can discover lounges, book short stays, and explore nearby experiences — all tailored to your time window. Whether you have a few hours or an entire day, we help you turn idle time into meaningful experiences.</p>
+                    <ul class="journey-list">
+                        <li><i class="fas fa-check-circle"></i> Personalized based on your schedule</li>
+                        <li><i class="fas fa-check-circle"></i> Works across major global airports</li>
+                        <li><i class="fas fa-check-circle"></i> Seamless booking experience</li>
+                    </ul>
+                </div>
+                <div class="journey-image">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80" alt="Travel experience">
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section">
+<section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Transform Your Layover?</h2>
-                <p>Join thousands of travelers who make every layover count.</p>
-                <a href="#" class="btn btn-primary btn-large">Plan My Layover</a>
+                <h2>Make Every Layover Count</h2>
+                <p class="subtitle">Plan smarter, travel better, and turn every stop into an experience.</p>
+                <div class="cta-micro-points">
+                    <span><i class="fas fa-check-circle"></i> Personalized for your layover time</span>
+                    <span><i class="fas fa-check-circle"></i> Instant booking across services</span>
+                    <span><i class="fas fa-check-circle"></i> Works at major global airports</span>
+                </div>
+                <div class="cta-trust">
+                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    Trusted by thousands of travelers worldwide
+                </div>
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary btn-large">Plan My Layover</a>
+                    <a href="#features" class="btn btn-secondary btn-large" style="background: white; border: 1px solid var(--glass-border); color: var(--text-dark);">Explore Experiences</a>
+                </div>
             </div>
         </div>
     </section>
@@ -693,16 +1129,30 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo">LX<span></span></a>
-                    <p>Transform your travel layovers into unforgettable experiences. Explore the world, one stop at a time.</p>
+                    <a href="#" class="logo-full">LayoverX</a>
+                    <p>Helping travelers turn layovers into meaningful experiences worldwide.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>Company</h4>
                     <ul>
                         <li><a href="#">About Us</a></li>
                         <li><a href="#">Careers</a></li>
-                        <li><a href="#">Press</a></li>
                         <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Explore Experiences</a></li>
+                        <li><a href="#">Airport Lounges</a></li>
+                        <li><a href="#">Short Stays</a></li>
+                        <li><a href="#">City Guides</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
@@ -726,7 +1176,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2024 LayoverX. All rights reserved.</p>
-                <p>Made with <i class="fas fa-heart" style="color: var(--accent);"></i> for travelers</p>
+                <p>Designed for modern travelers ✈️</p>
             </div>
         </div>
     </footer>
