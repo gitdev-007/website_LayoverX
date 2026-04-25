@@ -20,12 +20,12 @@
             --bg-sky: #EAF3FF;
             --bg-soft: #F7F9FC;
             --bg-white: #FFFFFF;
-            --bg-section: #F1F5F9;
+            --bg-section: #EEF3F8;
             --glass-border: rgba(0, 0, 0, 0.06);
-            --shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
-            --radius: 16px;
-            --radius-sm: 12px;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.1);
+            --radius: 20px;
+            --radius-sm: 14px;
         }
 
         * {
@@ -40,9 +40,9 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(180deg, #EAF3FF 0%, #F7F9FC 100%);
+            background: linear-gradient(180deg, var(--bg-sky) 0%, var(--bg-soft) 100%);
             color: var(--text-dark);
-            line-height: 1.6;
+            line-height: 1.65;
             overflow-x: hidden;
         }
 
@@ -63,6 +63,34 @@
             100% { background-position: 0% 50%; }
         }
 
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Noise Texture Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
         /* Navbar */
         nav {
             position: fixed;
@@ -70,16 +98,15 @@
             left: 0;
             right: 0;
             z-index: 1000;
-            padding: 20px 0;
-            transition: all 0.3s ease;
+            padding: 24px 0;
+            transition: all 0.4s ease;
         }
 
         nav.scrolled {
             background: rgba(11, 29, 58, 0.95);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 16px 0;
         }
 
         .nav-content {
@@ -90,7 +117,7 @@
 
         .logo {
             font-family: 'Poppins', sans-serif;
-            font-size: 28px;
+            font-size: 30px;
             font-weight: 700;
             color: white;
             text-decoration: none;
@@ -102,7 +129,7 @@
 
         .nav-menu {
             display: flex;
-            gap: 36px;
+            gap: 40px;
             list-style: none;
         }
 
@@ -149,19 +176,18 @@
 
         .btn-primary:hover {
             transform: translateY(-2px);
-            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.3);
+            box-shadow: 0 16px 40px rgba(255, 77, 109, 0.35);
         }
 
         .btn-outline {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
         }
 
         .btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
             border-color: var(--accent);
-            color: var(--accent);
         }
 
         .btn-large {
@@ -175,7 +201,7 @@
             display: flex;
             align-items: center;
             position: relative;
-            padding-top: 120px;
+            padding-top: 140px;
             overflow: hidden;
         }
 
@@ -196,9 +222,29 @@
             position: absolute;
             inset: 0;
             background: linear-gradient(180deg, 
-                rgba(11, 29, 58, 0.85) 0%,
-                rgba(11, 29, 58, 0.5) 40%,
-                rgba(11, 29, 58, 0.3) 100%);
+                rgba(11, 29, 58, 0.75) 0%,
+                rgba(11, 29, 58, 0.5) 50%,
+                rgba(11, 29, 58, 0.7) 100%);
+        }
+
+        .hero-glow-1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 77, 109, 0.15) 0%, transparent 60%);
+            top: 20%;
+            left: 30%;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero-glow-2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(100, 150, 255, 0.1) 0%, transparent 60%);
+            top: 40%;
+            right: 20%;
+            animation: pulse 8s ease-in-out infinite 2s;
         }
 
         .hero-overlay {
@@ -206,48 +252,29 @@
             top: 0;
             left: 0;
             right: 0;
-            height: 140px;
+            height: 160px;
             background: linear-gradient(180deg, 
-                rgba(11, 29, 58, 0.7) 0%,
+                rgba(11, 29, 58, 0.8) 0%,
                 transparent 100%);
-            z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
             text-align: center;
-            max-width: 800px;
+            max-width: 780px;
             margin: 0 auto;
             padding: 60px 0;
         }
 
-        .hero-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 56px;
-            height: 56px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 50%;
-            margin-bottom: 24px;
-            animation: fadeInUp 0.6s ease forwards;
-        }
-
-        .hero-icon i {
-            font-size: 24px;
-            color: white;
-        }
-
         .hero h1 {
             font-family: 'Poppins', sans-serif;
-            font-size: clamp(42px, 6vw, 64px);
+            font-size: clamp(44px, 6vw, 68px);
             font-weight: 700;
             line-height: 1.1;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             letter-spacing: -1px;
-            animation: fadeInUp 0.6s ease 0.2s forwards;
-            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
         }
 
         .hero h1 .dark {
@@ -255,7 +282,7 @@
         }
 
         .hero h1 .highlight {
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, #ffa5b0 100%);
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 50%, #ffb3bf 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -264,13 +291,31 @@
         .hero-subtitle {
             font-size: 18px;
             color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 36px;
-            max-width: 520px;
+            margin-bottom: 16px;
+            max-width: 540px;
             margin-left: auto;
             margin-right: auto;
             font-weight: 400;
-            animation: fadeInUp 0.6s ease 0.4s forwards;
+            animation: fadeInUp 0.8s ease 0.2s forwards;
             opacity: 0;
+        }
+
+        .hero-trust {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50px;
+            margin-bottom: 36px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.8);
+            animation: fadeInUp 0.8s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .hero-trust i {
+            color: #FFC107;
         }
 
         .hero-buttons {
@@ -278,15 +323,25 @@
             gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
-            margin-bottom: 0;
-            animation: fadeInUp 0.6s ease 0.6s forwards;
+            animation: fadeInUp 0.8s ease 0.4s forwards;
             opacity: 0;
         }
 
-        /* Steps Section */
-        .steps-section {
+        /* Value Section */
+        .value-section {
             padding: 100px 0;
-            background: var(--bg-soft);
+            background: var(--bg-white);
+            position: relative;
+        }
+
+        .value-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
         }
 
         .section-header {
@@ -296,51 +351,152 @@
 
         .section-header h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: clamp(32px, 4vw, 44px);
+            font-size: clamp(32px, 4vw, 46px);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .section-header p {
             color: var(--text-gray);
-            font-size: 16px;
+            font-size: 17px;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 36px 24px;
+            background: var(--bg-soft);
+            border-radius: var(--radius);
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--accent);
+        }
+
+        .value-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 22px;
+            color: white;
+        }
+
+        .value-card h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .value-card p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* Experience Preview Section */
+        .preview-section {
+            padding: 100px 0;
+            background: var(--bg-section);
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .preview-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
+        }
+
+        .preview-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .preview-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .preview-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .preview-card:hover .preview-image img {
+            transform: scale(1.08);
+        }
+
+        .preview-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 29, 58, 0.4), transparent);
+        }
+
+        .preview-content {
+            padding: 24px;
+        }
+
+        .preview-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .preview-content p {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            padding: 100px 0;
+            background: var(--bg-white);
+            position: relative;
         }
 
         .steps-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            position: relative;
+            gap: 28px;
             max-width: 1000px;
             margin: 0 auto;
         }
 
-        .steps-grid.six-cards {
-            grid-template-columns: repeat(3, 1fr);
-            max-width: 1100px;
-        }
-
-        .steps-line {
-            position: absolute;
-            top: 60px;
-            left: 20%;
-            right: 20%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent) 0%, rgba(255, 77, 109, 0.3) 50%, transparent 100%);
-            z-index: 0;
-        }
-
         .step-card {
-            background: var(--bg-white);
+            background: var(--bg-soft);
             border-radius: var(--radius);
-            padding: 32px 24px;
+            padding: 36px 28px;
             text-align: center;
-            position: relative;
-            z-index: 1;
-            transition: all 0.4s ease;
-            box-shadow: var(--shadow);
             border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
         }
 
         .step-card:hover {
@@ -350,46 +506,17 @@
         }
 
         .step-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 24px;
-            color: white;
-        }
-
-        .step-number {
-            display: none;
-        }
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            transition: all 0.4s ease;
-            box-shadow: var(--shadow);
-        }
-
-        .step-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .step-number {
             width: 64px;
             height: 64px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 50%;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 20px;
-            font-weight: 700;
+            margin: 0 auto 22px;
+            font-size: 26px;
             color: white;
-            box-shadow: 0 12px 24px rgba(255, 77, 109, 0.25);
+            box-shadow: 0 12px 28px rgba(255, 77, 109, 0.25);
         }
 
         .step-card h3 {
@@ -402,41 +529,16 @@
         .step-card p {
             color: var(--text-gray);
             font-size: 14px;
-            line-height: 1.6;
-        }
-
-        .steps-cta {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            margin-top: 48px;
-        }
-
-        .link-btn {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .link-btn:hover {
-            color: var(--accent-dark);
         }
 
         /* Features Section */
         .features {
             padding: 100px 0;
-            background: var(--bg-soft);
+            background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-soft) 100%);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        .features-grid.premium-grid {
             grid-template-columns: repeat(3, 1fr);
             gap: 28px;
         }
@@ -444,101 +546,89 @@
         .feature-card {
             background: var(--bg-white);
             border-radius: var(--radius);
-            padding: 0;
-            text-align: left;
-            transition: all 0.4s ease;
-            border: 1px solid var(--glass-border);
             overflow: hidden;
+            border: 1px solid var(--glass-border);
+            transition: all 0.4s ease;
         }
 
         .feature-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
         }
 
-        .premium-card .feature-image {
-            width: 100%;
+        .feature-image {
             height: 180px;
             overflow: hidden;
         }
 
-        .premium-card .feature-image img {
+        .feature-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
 
-        .premium-card:hover .feature-image img {
+        .feature-card:hover .feature-image img {
             transform: scale(1.08);
         }
 
-        .premium-card .feature-content {
-            padding: 24px;
+        .feature-content {
+            padding: 28px;
         }
 
-        .premium-card .feature-icon {
-            width: 52px;
-            height: 52px;
+        .feature-icon {
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 0 16px;
-            font-size: 22px;
+            margin-bottom: 16px;
+            font-size: 20px;
             color: white;
         }
 
-        .premium-card h3 {
+        .feature-content h3 {
             font-size: 20px;
             font-weight: 600;
             color: var(--text-dark);
             margin-bottom: 10px;
         }
 
-        .premium-card p {
+        .feature-content p {
             color: var(--text-gray);
             font-size: 14px;
             line-height: 1.65;
         }
 
-        .features-cta {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 48px;
+        /* Trust Section */
+        .trust-section {
+            padding: 80px 0;
+            background: var(--bg-section);
+            text-align: center;
         }
 
-        .feature-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 24px;
-            color: white;
+        .trust-content {
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .feature-card h3 {
+        .trust-content p {
             font-size: 18px;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 10px;
-        }
-
-        .feature-card p {
             color: var(--text-gray);
-            font-size: 14px;
-            line-height: 1.6;
+            font-style: italic;
+            margin-bottom: 12px;
         }
 
-        /* CTA Section */
+        .trust-content span {
+            display: block;
+            color: var(--text-light);
+            font-size: 14px;
+            font-style: normal;
+        }
+
+        /* Journey Section */
         .journey-section {
             padding: 100px 0;
             background: var(--bg-white);
@@ -575,14 +665,14 @@
             display: flex;
             align-items: flex-start;
             gap: 14px;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
             color: var(--text-dark);
             font-size: 15px;
         }
 
         .journey-list i {
             color: var(--accent);
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .journey-image {
@@ -599,12 +689,13 @@
         }
 
         .journey-image:hover img {
-            transform: scale(1.05);
+            transform: scale(1.04);
         }
 
+        /* CTA Section */
         .cta-section {
             padding: 120px 0;
-            background: linear-gradient(180deg, #F7F9FC 0%, #E8EFF5 100%);
+            background: linear-gradient(180deg, var(--bg-section) 0%, var(--bg-white) 100%);
             text-align: center;
             position: relative;
         }
@@ -624,47 +715,13 @@
             font-size: clamp(36px, 5vw, 52px);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 14px;
+            margin-bottom: 16px;
         }
 
-        .cta-section .subtitle {
+        .cta-section p {
             color: var(--text-gray);
             font-size: 18px;
-            margin-bottom: 24px;
-            max-width: 420px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-micro-points {
-            display: flex;
-            justify-content: center;
-            gap: 28px;
             margin-bottom: 36px;
-            flex-wrap: wrap;
-        }
-
-        .cta-micro-points span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-gray);
-            font-size: 14px;
-        }
-
-        .cta-micro-points i {
-            color: var(--accent);
-        }
-
-        .cta-trust {
-            color: var(--text-light);
-            font-size: 14px;
-            margin-bottom: 28px;
-        }
-
-        .cta-trust i {
-            color: #FFC107;
-            margin-right: 4px;
         }
 
         .cta-buttons {
@@ -672,14 +729,12 @@
             gap: 14px;
             justify-content: center;
             flex-wrap: wrap;
-            animation: fadeInUp 0.6s ease 0.3s forwards;
-            opacity: 0;
         }
 
         /* Footer */
         footer {
-            background: #F7F9FC;
-            padding: 64px 0 24px;
+            background: var(--bg-white);
+            padding: 64px 0 28px;
             border-top: 1px solid var(--glass-border);
         }
 
@@ -690,16 +745,7 @@
             margin-bottom: 48px;
         }
 
-        .footer-brand {
-            padding-right: 20px;
-        }
-
-        .footer-brand .logo-full {
-            font-family: 'Poppins', sans-serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--text-dark);
-            text-decoration: none;
+        .footer-brand .logo {
             display: inline-block;
             margin-bottom: 16px;
         }
@@ -720,7 +766,7 @@
         .footer-social a {
             width: 44px;
             height: 44px;
-            background: var(--bg-white);
+            background: var(--bg-soft);
             border: 1px solid var(--glass-border);
             border-radius: 50%;
             display: flex;
@@ -739,7 +785,7 @@
         }
 
         .footer-links h4 {
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 600;
             color: var(--text-dark);
             margin-bottom: 20px;
@@ -784,158 +830,46 @@
             align-items: center;
             gap: 6px;
         }
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 1.5fr repeat(3, 1fr);
-            gap: 48px;
-            margin-bottom: 40px;
-        }
-
-        .footer-brand .logo {
-            display: inline-block;
-            margin-bottom: 14px;
-        }
-
-        .footer-brand p {
-            color: var(--text-gray);
-            font-size: 14px;
-            margin: 14px 0 20px;
-            max-width: 240px;
-            line-height: 1.7;
-        }
-
-        .footer-links h4 {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 18px;
-            color: var(--text-dark);
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 12px;
-        }
-
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--accent);
-        }
-
-        .footer-bottom {
-            padding-top: 20px;
-            border-top: 1px solid var(--glass-border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .footer-bottom p {
-            color: var(--text-light);
-            font-size: 13px;
-        }
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .nav-menu {
-                display: none;
-            }
-
-            .steps-grid {
-                grid-template-columns: 1fr;
-                gap: 24px;
-                max-width: 400px;
-            }
-
-            .steps-line {
-                display: none;
-            }
-
-            .features-grid {
-                grid-template-columns: repeat(2, 1fr);
-                max-width: 800px;
-                margin: 0 auto;
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .nav-menu { display: none; }
+            .value-grid { grid-template-columns: repeat(2, 1fr); }
+            .preview-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .journey-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
         @media (max-width: 768px) {
-            .container {
-                padding: 0 20px;
-            }
-
-            .hero h1 {
-                font-size: 38px;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-
-            }
-
-            .features-grid,
-            .premium-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .journey-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .journey-image {
-                order: -1;
-            }
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .steps-cta {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 32px;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 14px;
-                text-align: center;
-            }
+            .container { padding: 0 20px; }
+            .hero h1 { font-size: 40px; }
+            .hero-buttons { flex-direction: column; }
+            .value-grid { grid-template-columns: 1fr; }
+            .preview-grid { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+            .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
         }
     </style>
 </head>
 <body>
+    <div class="noise-overlay"></div>
+
     <nav id="navbar">
         <div class="container">
             <div class="nav-content">
-                <a href="#" class="logo">LX<span></span></a>
+                <a href="#" class="logo">Layover<span>X</span></a>
                 <ul class="nav-menu">
                     <li><a href="#features">Features</a></li>
                     <li><a href="#steps">How It Works</a></li>
                     <li><a href="#journey">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
                 <div class="nav-actions">
                     <a href="#" class="btn btn-outline">Sign In</a>
-                    <a href="#steps" class="btn btn-primary">Plan My Layover</a>
+                    <a href="#cta" class="btn btn-primary">Plan My Layover</a>
                 </div>
             </div>
         </div>
@@ -943,22 +877,106 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" alt="Airplane wing at golden hour">
+            <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80" alt="Airplane wing at sunset">
         </div>
+        <div class="hero-glow-1"></div>
+        <div class="hero-glow-2"></div>
         <div class="hero-overlay"></div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-icon">
-                    <i class="fas fa-plane"></i>
-                </div>
                 <h1>
                     <span class="dark">Turn Your Layovers Into </span>
                     <span class="highlight">Experiences</span>
                 </h1>
                 <p class="hero-subtitle">Find lounges, short stays, and city experiences during your layover — all in one place.</p>
+                <div class="hero-trust">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    Designed for modern travelers who value time
+                </div>
                 <div class="hero-buttons">
-                    <a href="#steps" class="btn btn-primary btn-large">Plan My Layover</a>
-                    <a href="#features" class="btn btn-outline btn-large">How It Works</a>
+                    <a href="#cta" class="btn btn-primary btn-large">Plan My Layover</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="value-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why LayoverX Feels Different</h2>
+                <p>A better way to spend your time between flights</p>
+            </div>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-gem"></i></div>
+                    <h3>Curated, Not Cluttered</h3>
+                    <p>Handpicked options, not overwhelming lists</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-clock"></i></div>
+                    <h3>Time-Aware</h3>
+                    <p>Suggestions based on your layover duration</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-shield-halved"></i></div>
+                    <h3>Verified Experiences</h3>
+                    <p>Quality-checked by real travelers</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Built for Travelers</h3>
+                    <p>Designed by frequent flyers like you</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="preview-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Awaits You</h2>
+                <p>Premium experiences at your fingertips</p>
+            </div>
+            <div class="preview-grid">
+                <div class="preview-card">
+                    <div class="preview-image">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Luxury Hotel">
+                    </div>
+                    <div class="preview-content">
+                        <h3>Luxury Stays</h3>
+                        <p>Premium hotels and nap pods near airports</p>
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <div class="preview-image">
+                        <img src="https://images.unsplash.com/photo-1542314834-0687f104e1e1?w=600&q=80" alt="Airport Lounge">
+                    </div>
+                    <div class="preview-content">
+                        <h3>Airport Lounges</h3>
+                        <p>Relax in comfort between flights</p>
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <div class="preview-image">
+                        <img src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80" alt="City View">
+                    </div>
+                    <div class="preview-content">
+                        <h3>City Experiences</h3>
+                        <p>Explore nearby attractions on foot</p>
+                    </div>
+                </div>
+                <div class="preview-card">
+                    <div class="preview-image">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Restaurant">
+                    </div>
+                    <div class="preview-content">
+                        <h3>Fine Dining</h3>
+                        <p>Curated restaurants within reach</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -967,44 +985,25 @@
     <section class="steps-section" id="steps">
         <div class="container">
             <div class="section-header">
-                <h2>Everything You Need for a Perfect Layover</h2>
-                <p>From comfort to exploration, LayoverX gives you complete control over your time.</p>
+                <h2>Plan Your Perfect Layover</h2>
+                <p>Three simple steps to transform your time</p>
             </div>
-            <div class="steps-grid six-cards">
+            <div class="steps-grid">
                 <div class="step-card">
-                    <div class="step-icon"><i class="fas fa-couch"></i></div>
-                    <h3>Airport Lounges</h3>
-                    <p>Relax in premium lounges with food, Wi-Fi, and comfort.</p>
+                    <div class="step-icon"><i class="fas fa-search"></i></div>
+                    <h3>Enter Your Layover</h3>
+                    <p>Add your airport and available time</p>
                 </div>
                 <div class="step-card">
-                    <div class="step-icon"><i class="fas fa-bed"></i></div>
-                    <h3>Short Stays</h3>
-                    <p>Book nearby hotels or airport pods for quick rest.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-icon"><i class="fas fa-map-marked-alt"></i></div>
-                    <h3>City Experiences</h3>
-                    <p>Explore local attractions within your layover time.</p>
-                </div>
-                <div class="step-card">
-                    <div class="step-icon"><i class="fas fa-robot"></i></div>
-                    <h3>Smart Recommendations</h3>
-                    <p>Get suggestions based on your layover duration.</p>
+                    <div class="step-icon"><i class="fas fa-list-check"></i></div>
+                    <h3>Explore Options</h3>
+                    <p>Browse lounges, stays, and experiences</p>
                 </div>
                 <div class="step-card">
                     <div class="step-icon"><i class="fas fa-bolt"></i></div>
-                    <h3>Instant Booking</h3>
-                    <p>Reserve everything in just a few clicks.</p>
+                    <h3>Book Instantly</h3>
+                    <p>Reserve everything with one click</p>
                 </div>
-                <div class="step-card">
-                    <div class="step-icon"><i class="fas fa-clock"></i></div>
-                    <h3>Real-Time Planning</h3>
-                    <p>Stay on track with time-aware planning tools.</p>
-                </div>
-            </div>
-            <div class="steps-cta">
-                <a href="#" class="btn btn-primary">Plan My Layover</a>
-                <a href="#features" class="link-btn">Browse Experiences →</a>
             </div>
         </div>
     </section>
@@ -1013,73 +1012,48 @@
         <div class="container">
             <div class="section-header">
                 <h2>Curated Layover Experiences</h2>
-                <p>Make the most of every layover with handpicked options designed for comfort, convenience, and exploration.</p>
+                <p>Handpicked options designed for comfort and convenience</p>
             </div>
-            <div class="features-grid premium-grid">
-                <div class="feature-card premium-card">
+            <div class="features-grid">
+                <div class="feature-card">
                     <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1542314834-0687f104e558?w=600&q=80" alt="Airport Lounge">
+                        <img src="https://images.unsplash.com/photo-1542314834-0687f104e1e1?w=600&q=80" alt="Lounge">
                     </div>
                     <div class="feature-content">
                         <div class="feature-icon"><i class="fas fa-couch"></i></div>
                         <h3>Airport Lounges</h3>
-                        <p>Access premium lounges with food, Wi-Fi, and a peaceful environment to relax between flights.</p>
+                        <p>Premium lounges with Wi-Fi, food, and peaceful rest between flights.</p>
                     </div>
                 </div>
-                <div class="feature-card premium-card">
+                <div class="feature-card">
                     <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Hotel Room">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=80" alt="Hotel">
                     </div>
                     <div class="feature-content">
                         <div class="feature-icon"><i class="fas fa-bed"></i></div>
-                        <h3>Short Stays & Nap Pods</h3>
-                        <p>Recharge with flexible hotel rooms or airport sleeping pods tailored to your layover duration.</p>
+                        <h3>Short Stays</h3>
+                        <p>Flexible hotel rooms and airport pods tailored to your duration.</p>
                     </div>
                 </div>
-                <div class="feature-card premium-card">
+                <div class="feature-card">
                     <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1589802829984-817d1af2031c?w=600&q=80" alt="City Tour">
+                        <img src="https://images.unsplash.com/photo-1589802829984-8173d1af2031c?w=600&q=80" alt="City">
                     </div>
                     <div class="feature-content">
                         <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
-                        <h3>Local Experiences</h3>
-                        <p>Explore nearby attractions, guided tours, and city highlights within your available time.</p>
-                    </div>
-                </div>
-                <div class="feature-card premium-card">
-                    <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt="Fine Dining">
-                    </div>
-                    <div class="feature-content">
-                        <div class="feature-icon"><i class="fas fa-utensils"></i></div>
-                        <h3>Dining Experiences</h3>
-                        <p>Discover curated restaurants and fine dining options near your airport.</p>
-                    </div>
-                </div>
-                <div class="feature-card premium-card">
-                    <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1544161515-4ab90ce7e1d1?w=600&q=80" alt="Spa">
-                    </div>
-                    <div class="feature-content">
-                        <div class="feature-icon"><i class="fas fa-spa"></i></div>
-                        <h3>Wellness & Relaxation</h3>
-                        <p>Book spas, showers, and wellness services to refresh during your journey.</p>
-                    </div>
-                </div>
-                <div class="feature-card premium-card">
-                    <div class="feature-image">
-                        <img src="https://images.unsplash.com/photo-1457129011199-c99eca2d1d17?w=600&q=80" alt="Smart Planning">
-                    </div>
-                    <div class="feature-content">
-                        <div class="feature-icon"><i class="fas fa-robot"></i></div>
-                        <h3>Smart Itineraries</h3>
-                        <p>Get personalized plans based on your layover time, preferences, and airport location.</p>
+                        <h3>City Experiences</h3>
+                        <p>Explore nearby attractions and guided tours within your time.</p>
                     </div>
                 </div>
             </div>
-            <div class="features-cta">
-                <a href="#" class="btn btn-primary btn-large">Explore All Experiences</a>
-                <a href="#steps" class="link-btn">Plan My Layover</a>
+        </div>
+    </section>
+
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-content">
+                <p>"Curated with real traveler insights, designed for comfort, not chaos."</p>
+                <span>— Built for those who make every minute count</span>
             </div>
         </div>
     </section>
@@ -1088,8 +1062,8 @@
         <div class="container">
             <div class="journey-grid">
                 <div class="journey-content">
-                    <h2>Designed Around Your Journey</h2>
-                    <p>Layovers no longer have to mean waiting at the airport. With LayoverX, you can discover lounges, book short stays, and explore nearby experiences — all tailored to your time window. Whether you have a few hours or an entire day, we help you turn idle time into meaningful experiences.</p>
+                    <h2>Make Every Minute Count</h2>
+                    <p>Layovers no longer have to mean waiting at the airport. With LayoverX, discover lounges, book short stays, and explore nearby experiences — all tailored to your time window.</p>
                     <ul class="journey-list">
                         <li><i class="fas fa-check-circle"></i> Personalized based on your schedule</li>
                         <li><i class="fas fa-check-circle"></i> Works across major global airports</li>
@@ -1097,30 +1071,19 @@
                     </ul>
                 </div>
                 <div class="journey-image">
-                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80" alt="Travel experience">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=800&q=80" alt="Travel">
                 </div>
             </div>
         </div>
     </section>
 
-<section class="cta-section">
+    <section class="cta-section" id="cta">
         <div class="container">
-            <div class="cta-content">
-                <h2>Make Every Layover Count</h2>
-                <p class="subtitle">Plan smarter, travel better, and turn every stop into an experience.</p>
-                <div class="cta-micro-points">
-                    <span><i class="fas fa-check-circle"></i> Personalized for your layover time</span>
-                    <span><i class="fas fa-check-circle"></i> Instant booking across services</span>
-                    <span><i class="fas fa-check-circle"></i> Works at major global airports</span>
-                </div>
-                <div class="cta-trust">
-                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    Trusted by thousands of travelers worldwide
-                </div>
-                <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary btn-large">Plan My Layover</a>
-                    <a href="#features" class="btn btn-secondary btn-large" style="background: white; border: 1px solid var(--glass-border); color: var(--text-dark);">Explore Experiences</a>
-                </div>
+            <h2>Make Every Layover Count</h2>
+            <p>Plan smarter, travel better, and turn every stop into an experience.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-primary btn-large">Plan My Layover</a>
+                <a href="#features" class="btn btn-outline btn-large" style="background: white; border: 1px solid var(--glass-border); color: var(--text-dark);">Explore Experiences</a>
             </div>
         </div>
     </section>
@@ -1129,7 +1092,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo-full">LayoverX</a>
+                    <a href="#" class="logo">Layover<span>X</span></a>
                     <p>Helping travelers turn layovers into meaningful experiences worldwide.</p>
                     <div class="footer-social">
                         <a href="#"><i class="fab fa-instagram"></i></a>
@@ -1149,9 +1112,9 @@
                 <div class="footer-links">
                     <h4>Product</h4>
                     <ul>
-                        <li><a href="#">Explore Experiences</a></li>
-                        <li><a href="#">Airport Lounges</a></li>
-                        <li><a href="#">Short Stays</a></li>
+                        <li><a href="#">Explore</a></li>
+                        <li><a href="#">Lounges</a></li>
+                        <li><a href="#">Stays</a></li>
                         <li><a href="#">City Guides</a></li>
                     </ul>
                 </div>
@@ -1196,9 +1159,7 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
