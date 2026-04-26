@@ -403,6 +403,18 @@
             max-width: 580px;
             margin: 0 auto;
             line-height: 1.7;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header p::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #FF4D6D, #FF6B81);
+            margin: 12px auto 0;
+            border-radius: 2px;
         }
 
         .value-grid {
@@ -511,26 +523,56 @@
         /* Experience Preview Section */
         .preview-section {
             padding: 100px 0;
-            background: var(--bg-section);
+            position: relative;
+            overflow: hidden;
+            background-image: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .preview-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                rgba(255, 255, 255, 0.85),
+                rgba(255, 255, 255, 0.92)
+            );
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        .preview-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.03);
+            pointer-events: none;
         }
 
         .preview-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             gap: 24px;
+            position: relative;
+            z-index: 1;
         }
 
         .preview-card {
-            background: var(--bg-white);
-            border-radius: var(--radius);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.4s ease;
         }
 
         .preview-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         .preview-image {
@@ -547,14 +589,15 @@
         }
 
         .preview-card:hover .preview-image img {
-            transform: scale(1.08);
+            transform: scale(1.05);
         }
 
         .preview-image::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(11, 29, 58, 0.4), transparent);
+            background: linear-gradient(to top, rgba(11, 29, 58, 0.35), transparent);
+            pointer-events: none;
         }
 
         .preview-content {
@@ -564,13 +607,40 @@
         .preview-content h3 {
             font-size: 18px;
             font-weight: 600;
-            color: var(--text-dark);
+            color: #0B1D3A;
             margin-bottom: 6px;
         }
 
         .preview-content p {
-            color: var(--text-gray);
+            color: #6B7280;
             font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .preview-footer {
+            text-align: center;
+            margin-top: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .preview-footer-curve {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .preview-footer-curve svg {
+            width: 200px;
+            height: 40px;
+            opacity: 0.4;
+        }
+
+        .preview-footer-curve span {
+            color: #6B7280;
+            font-size: 14px;
+            font-style: italic;
         }
 
         /* Steps Section */
@@ -933,7 +1003,7 @@
         @media (max-width: 1024px) {
             .nav-menu { display: none; }
             .value-grid { grid-template-columns: repeat(2, 1fr); }
-            .preview-grid { grid-template-columns: repeat(2, 1fr); }
+            .preview-grid { grid-template-columns: repeat(3, 1fr); }
             .steps-grid { grid-template-columns: 1fr; max-width: 400px; }
             .features-grid { grid-template-columns: repeat(2, 1fr); }
             .journey-grid { grid-template-columns: 1fr; }
@@ -949,6 +1019,10 @@
             .features-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: 1fr; gap: 32px; }
             .footer-bottom { flex-direction: column; gap: 14px; text-align: center; }
+        }
+
+        @media (max-width: 480px) {
+            .preview-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1054,16 +1128,16 @@
                     </div>
                     <div class="preview-content">
                         <h3>Luxury Stays</h3>
-                        <p>Premium hotels and nap pods near airports</p>
+                        <p>Handpicked premium hotels and nap pods near airports for ultimate comfort.</p>
                     </div>
                 </div>
                 <div class="preview-card">
                     <div class="preview-image">
-                        <img src="https://images.unsplash.com/photo-1542314834-0687f104e1e1?w=600&q=80" alt="Airport Lounge">
+                        <img src="https://images.unsplash.com/photo-1583416750470-965b2707b355?w=600&q=80" alt="Airport Lounge">
                     </div>
                     <div class="preview-content">
                         <h3>Airport Lounges</h3>
-                        <p>Relax in comfort between flights</p>
+                        <p>Access world-class lounges to relax, refresh, and recharge between flights.</p>
                     </div>
                 </div>
                 <div class="preview-card">
@@ -1072,7 +1146,7 @@
                     </div>
                     <div class="preview-content">
                         <h3>City Experiences</h3>
-                        <p>Explore nearby attractions on foot</p>
+                        <p>Discover nearby attractions, short tours, and hidden gems within your time window.</p>
                     </div>
                 </div>
                 <div class="preview-card">
@@ -1081,8 +1155,30 @@
                     </div>
                     <div class="preview-content">
                         <h3>Fine Dining</h3>
-                        <p>Curated restaurants within reach</p>
+                        <p>Enjoy curated dining experiences at top-rated restaurants near the airport.</p>
                     </div>
+                </div>
+                <div class="preview-card">
+                    <div class="preview-image">
+                        <img src="https://images.unsplash.com/photo-1544161515-4ab6d4a27f35?w=600&q=80" alt="Spa Wellness">
+                    </div>
+                    <div class="preview-content">
+                        <h3>Spa & Wellness</h3>
+                        <p>Rejuvenate with relaxing spa treatments and wellness facilities designed for travelers.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-footer">
+                <div class="preview-footer-curve">
+                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 30 Q 50 10, 100 20 T 190 15" stroke="#0B1D3A" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+                        <circle cx="190" cy="15" r="3" fill="#FF4D6D"/>
+                    </svg>
+                    <span>Your next adventure awaits</span>
+                    <svg viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M190 30 Q 150 10, 100 20 T 10 15" stroke="#0B1D3A" stroke-width="1.5" stroke-dasharray="4 4" fill="none"/>
+                        <circle cx="10" cy="15" r="3" fill="#FF4D6D"/>
+                    </svg>
                 </div>
             </div>
         </div>
