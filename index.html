@@ -526,10 +526,13 @@
             position: relative;
             overflow: hidden;
             background: linear-gradient(
-                rgba(255, 255, 255, 0.78),
-                rgba(255, 255, 255, 0.78)
-            ), url('https://images.unsplash.com/photo-1529070538774-1843cb3265df') center/cover no-repeat;
+                rgba(255, 255, 255, 0.55),
+                rgba(255, 255, 255, 0.55)
+            ), url('https://images.unsplash.com/photo-1504196606672-aef5c9cefc92') center/cover no-repeat;
             background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            filter: contrast(1.05) brightness(0.95);
         }
 
         .preview-section::before {
@@ -548,9 +551,9 @@
         }
 
         .preview-card {
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.3);
