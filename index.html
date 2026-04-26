@@ -330,7 +330,7 @@
         /* Value Section */
         .value-section {
             padding: 120px 0;
-            background: linear-gradient(180deg, #F7F9FC 0%, #EAF3FF 100%);
+            background: linear-gradient(180deg, #0A1429 0%, #0D1B2A 100%);
             position: relative;
             overflow: hidden;
         }
@@ -340,26 +340,35 @@
             position: absolute;
             inset: 0;
             background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80') center/cover no-repeat;
-            opacity: 0.05;
-            filter: blur(2px);
+            opacity: 0.15;
+            filter: blur(1px);
+        }
+
+        .value-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(10, 20, 41, 0.75);
         }
 
         .value-glow {
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(255, 77, 109, 0.1) 0%, transparent 60%);
-            top: -100px;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(52, 152, 219, 0.12) 0%, transparent 50%);
+            top: -150px;
             right: -100px;
+            pointer-events: none;
         }
 
         .value-glow-2 {
             position: absolute;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(100, 150, 255, 0.08) 0%, transparent 60%);
-            bottom: -50px;
-            left: -50px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(155, 89, 182, 0.08) 0%, transparent 50%);
+            bottom: -100px;
+            left: -100px;
+            pointer-events: none;
         }
 
         .value-section .container {
@@ -376,13 +385,13 @@
             font-family: 'Poppins', sans-serif;
             font-size: clamp(34px, 4.5vw, 48px);
             font-weight: 700;
-            color: var(--text-dark);
+            color: #FFFFFF;
             margin-bottom: 16px;
             line-height: 1.2;
         }
 
         .section-header p {
-            color: var(--text-gray);
+            color: rgba(255, 255, 255, 0.75);
             font-size: 17px;
             max-width: 580px;
             margin: 0 auto;
@@ -398,12 +407,12 @@
         .value-card {
             text-align: center;
             padding: 40px 28px;
-            background: rgba(255, 255, 255, 0.75);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 24px;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.25);
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
@@ -413,15 +422,15 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 50% 0%, rgba(255, 77, 109, 0.08) 0%, transparent 60%);
+            background: radial-gradient(circle at 50% 0%, rgba(52, 152, 219, 0.15) 0%, transparent 60%);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
 
         .value-card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 40px rgba(255, 77, 109, 0.1);
-            border-color: rgba(255, 77, 109, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4), 0 0 30px rgba(52, 152, 219, 0.15);
+            border-color: rgba(52, 152, 219, 0.3);
         }
 
         .value-card:hover::before {
@@ -431,7 +440,7 @@
         .value-icon {
             width: 64px;
             height: 64px;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+            background: linear-gradient(135deg, #3498DB 0%, #9B59B6 100%);
             border-radius: 18px;
             display: flex;
             align-items: center;
@@ -439,7 +448,7 @@
             margin: 0 auto 24px;
             font-size: 24px;
             color: white;
-            box-shadow: 0 8px 24px rgba(255, 77, 109, 0.3);
+            box-shadow: 0 8px 24px rgba(52, 152, 219, 0.35);
             position: relative;
             z-index: 1;
         }
@@ -447,14 +456,14 @@
         .value-card h3 {
             font-size: 18px;
             font-weight: 600;
-            color: var(--text-dark);
+            color: #FFFFFF;
             margin-bottom: 12px;
             position: relative;
             z-index: 1;
         }
 
         .value-card p {
-            color: var(--text-gray);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 14px;
             line-height: 1.65;
             position: relative;
@@ -465,11 +474,11 @@
             text-align: center;
             margin-top: 56px;
             padding-top: 40px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .value-trust p {
-            color: var(--text-gray);
+            color: rgba(255, 255, 255, 0.75);
             font-size: 15px;
             font-style: italic;
         }
@@ -477,6 +486,19 @@
         .value-trust i {
             color: #FFC107;
             margin-right: 4px;
+        }
+
+        .value-tagline {
+            text-align: center;
+            margin-top: 48px;
+        }
+
+        .value-tagline p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 20px;
+            font-weight: 500;
+            font-style: italic;
+            letter-spacing: 0.5px;
         }
 
         /* Experience Preview Section */
@@ -983,25 +1005,28 @@
             </div>
             <div class="value-grid">
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-gem"></i></div>
+                    <div class="value-icon"><i class="fas fa-spa"></i></div>
                     <h3>Curated, Not Cluttered</h3>
-                    <p>Skip endless scrolling — we handpick only the most relevant experiences based on your time and location.</p>
+                    <p>Skip endless scrolling — we surface only the most relevant, high-quality experiences tailored to your time and location.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-clock"></i></div>
+                    <div class="value-icon"><i class="fas fa-hourglass-half"></i></div>
                     <h3>Time-Aware Planning</h3>
-                    <p>Smart recommendations tailored to your exact layover duration, ensuring you never risk missing your next flight.</p>
+                    <p>Smart recommendations perfectly matched to your layover duration — maximize every minute without rushing or waiting.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-shield-check"></i></div>
+                    <div class="value-icon"><i class="fas fa-medal"></i></div>
                     <h3>Verified & Reliable</h3>
-                    <p>Every experience is quality-checked and trusted by real travelers for safety, comfort, and reliability.</p>
+                    <p>Every venue is quality-vetted and traveler-approved for safety, comfort, and an authentic layover experience.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-users-viewfinder"></i></div>
+                    <div class="value-icon"><i class="fas fa-route"></i></div>
                     <h3>Built for Real Travelers</h3>
-                    <p>Designed with insights from frequent flyers to solve real layover problems — not just look good.</p>
+                    <p>Created by frequent flyers who know the struggle — practical solutions that actually work in real layover scenarios.</p>
                 </div>
+            </div>
+            <div class="value-tagline">
+                <p>Built to transform waiting time into meaningful experiences.</p>
             </div>
             <div class="value-trust">
                 <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> Trusted by travelers who value time, comfort, and seamless journeys</p>
