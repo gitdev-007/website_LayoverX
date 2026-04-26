@@ -329,39 +329,64 @@
 
         /* Value Section */
         .value-section {
-            padding: 100px 0;
-            background: var(--bg-white);
+            padding: 120px 0;
+            background: linear-gradient(180deg, #F7F9FC 0%, #EAF3FF 100%);
             position: relative;
+            overflow: hidden;
         }
 
         .value-section::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1920&q=80') center/cover no-repeat;
+            opacity: 0.05;
+            filter: blur(2px);
+        }
+
+        .value-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 77, 109, 0.1) 0%, transparent 60%);
+            top: -100px;
+            right: -100px;
+        }
+
+        .value-glow-2 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(100, 150, 255, 0.08) 0%, transparent 60%);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .value-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 56px;
+            margin-bottom: 64px;
         }
 
         .section-header h2 {
             font-family: 'Poppins', sans-serif;
-            font-size: clamp(32px, 4vw, 46px);
+            font-size: clamp(34px, 4.5vw, 48px);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 14px;
+            margin-bottom: 16px;
+            line-height: 1.2;
         }
 
         .section-header p {
             color: var(--text-gray);
             font-size: 17px;
-            max-width: 520px;
+            max-width: 580px;
             margin: 0 auto;
+            line-height: 1.7;
         }
 
         .value-grid {
@@ -372,42 +397,86 @@
 
         .value-card {
             text-align: center;
-            padding: 36px 24px;
-            background: var(--bg-soft);
-            border-radius: var(--radius);
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s ease;
+            padding: 40px 28px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 0%, rgba(255, 77, 109, 0.08) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
 
         .value-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-            border-color: var(--accent);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 24px 60px rgba(0, 0, 0, 0.12), 0 0 40px rgba(255, 77, 109, 0.1);
+            border-color: rgba(255, 77, 109, 0.3);
+        }
+
+        .value-card:hover::before {
+            opacity: 1;
         }
 
         .value-icon {
-            width: 56px;
-            height: 56px;
+            width: 64px;
+            height: 64px;
             background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
-            border-radius: 14px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 22px;
+            margin: 0 auto 24px;
+            font-size: 24px;
             color: white;
+            box-shadow: 0 8px 24px rgba(255, 77, 109, 0.3);
+            position: relative;
+            z-index: 1;
         }
 
         .value-card h3 {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 600;
             color: var(--text-dark);
-            margin-bottom: 8px;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
         }
 
         .value-card p {
             color: var(--text-gray);
             font-size: 14px;
+            line-height: 1.65;
+            position: relative;
+            z-index: 1;
+        }
+
+        .value-trust {
+            text-align: center;
+            margin-top: 56px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .value-trust p {
+            color: var(--text-gray);
+            font-size: 15px;
+            font-style: italic;
+        }
+
+        .value-trust i {
+            color: #FFC107;
+            margin-right: 4px;
         }
 
         /* Experience Preview Section */
@@ -905,32 +974,37 @@
     </section>
 
     <section class="value-section">
+        <div class="value-glow"></div>
+        <div class="value-glow-2"></div>
         <div class="container">
             <div class="section-header">
-                <h2>Why LayoverX Feels Different</h2>
-                <p>A better way to spend your time between flights</p>
+                <h2>Designed for Smarter, Smoother Layovers</h2>
+                <p>Every feature is crafted to help you make the most of your time between flights — without stress, confusion, or wasted hours.</p>
             </div>
             <div class="value-grid">
                 <div class="value-card">
                     <div class="value-icon"><i class="fas fa-gem"></i></div>
                     <h3>Curated, Not Cluttered</h3>
-                    <p>Handpicked options, not overwhelming lists</p>
+                    <p>Skip endless scrolling — we handpick only the most relevant experiences based on your time and location.</p>
                 </div>
                 <div class="value-card">
                     <div class="value-icon"><i class="fas fa-clock"></i></div>
-                    <h3>Time-Aware</h3>
-                    <p>Suggestions based on your layover duration</p>
+                    <h3>Time-Aware Planning</h3>
+                    <p>Smart recommendations tailored to your exact layover duration, ensuring you never risk missing your next flight.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-shield-halved"></i></div>
-                    <h3>Verified Experiences</h3>
-                    <p>Quality-checked by real travelers</p>
+                    <div class="value-icon"><i class="fas fa-shield-check"></i></div>
+                    <h3>Verified & Reliable</h3>
+                    <p>Every experience is quality-checked and trusted by real travelers for safety, comfort, and reliability.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Built for Travelers</h3>
-                    <p>Designed by frequent flyers like you</p>
+                    <div class="value-icon"><i class="fas fa-users-viewfinder"></i></div>
+                    <h3>Built for Real Travelers</h3>
+                    <p>Designed with insights from frequent flyers to solve real layover problems — not just look good.</p>
                 </div>
+            </div>
+            <div class="value-trust">
+                <p><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> Trusted by travelers who value time, comfort, and seamless journeys</p>
             </div>
         </div>
     </section>
